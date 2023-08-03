@@ -46,7 +46,7 @@ authRouter.post('/login', (req, res, next) => {
                     res.status(403)
                     return next(new Error("Password is incorrect."));
                 }
-                const token = jwt.sign(user.withoutPassword(), process.env.USER_SECRET);
+                const token = jwt.sign(user.withoutPasswordOrFriends(), process.env.USER_SECRET);
                 res.status(200).send({ token, user: user.withoutPassword() })
             })
         })

@@ -4,6 +4,17 @@ const bcrypt = require('bcrypt');
 
 const saltRounds = 10;
 
+const friendSchema = new Schema({
+    friendId: {
+        type: Schema.Types.ObjectId,
+        required: true
+    },
+    chat: {
+        type: Schema.Types.ObjectId,
+        required: true
+    }
+}, { _id: false })
+
 const userSchema = new Schema({
     username: {
         type: String,
@@ -14,8 +25,12 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true
+    },
+    friends: {
+        type: [friendSchema],
+        required: true
     }
-}, { timestamps: true })
+});
 
 userSchema.pre('save', function (next) {
     const user = this;
@@ -37,6 +52,13 @@ userSchema.methods.checkPassword = function (passwordAttempt, callback) {
 userSchema.methods.withoutPassword = function () {
     const user = this.toObject();
     delete user.password
+    return user;
+}
+
+userSchema.methods.withoutPasswordOrFriends = function () {
+    const user = this.toObject();
+    delete user.password
+    delete user.friends
     return user;
 }
 

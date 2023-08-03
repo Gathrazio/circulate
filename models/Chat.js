@@ -10,17 +10,13 @@ const messageSchema = new Schema({
         type: Schema.Types.ObjectId,
         required: true
     }
-}, { _id: false })
+}, { _id: false });
 
 const chatSchema = new Schema({
     messages: {
         type: [messageSchema],
         required: true
-    },
-    relationship: {
-        type: Schema.Types.ObjectId,
-        required: true
     }
-})
+});
 
 module.exports = mongoose.model("Chat", chatSchema);

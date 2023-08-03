@@ -15,6 +15,13 @@ mongoose.connect(process.env.MONGO_URL)
 app.use(express.static(path.join(__dirname, 'client', 'dist')))
 app.use('/api/auth', require('./routes/authRouter.js'))
 
+app.use('/api/protected', jwt({
+    secret: process.env.USER_SECRET,
+    algorithms: ['HS256']
+}))
+app.use('/api/protected/chats', require('./routes/chatRouter.js'))
+app.use('/api/protected/friends', require('./routes/friendRouter.js'))
+
 app.use((err, req, res, next) => {
     if (err.name === "UnauthorizedError") {
         res.status(err.status)
