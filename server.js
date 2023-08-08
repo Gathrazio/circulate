@@ -21,6 +21,7 @@ app.use('/api/protected', jwt({
 }))
 app.use('/api/protected/chats', require('./routes/chatRouter.js'))
 app.use('/api/protected/friends', require('./routes/friendRouter.js'))
+app.use('/api/protected/biography', require("./routes/bioRouter.js"))
 
 app.use((err, req, res, next) => {
     if (err.name === "UnauthorizedError") {

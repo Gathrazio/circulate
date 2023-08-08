@@ -26,6 +26,9 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    bioId: {
+        type: Schema.Types.ObjectId
+    },
     friends: {
         type: [friendSchema],
         required: true
@@ -47,6 +50,14 @@ userSchema.methods.checkPassword = function (passwordAttempt, callback) {
         if (err) return callback(err);
         return callback(null, isMatch);
     })
+}
+
+userSchema.methods.justUsername = function () {
+    const user = this.toObject();
+    delete user.password
+    delete user.friends
+    delete user.bioId
+    return user;
 }
 
 userSchema.methods.withoutPassword = function () {

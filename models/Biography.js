@@ -11,3 +11,7 @@ const biographySchema = new Schema({
         required: true
     }
 })
+
+mongoose.Schema.Types.String.checkRequired(v => v != null)
+
+module.exports = mongoose.model("Biography", biographySchema);

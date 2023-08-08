@@ -10,7 +10,6 @@ friendRouter.route('/')
         const newChat = new Chat({messages: []});
         newChat.save()
             .then(savedChat => {
-                console.log("saved the chat", savedChat)
                 User.findOneAndUpdate(
                     { _id: req.auth._id },
                     {$push: { friends: {
@@ -19,7 +18,6 @@ friendRouter.route('/')
                     }}},
                     { new: true })
                     .then(updatedUser => {
-                        console.log('updated the user', updatedUser)
                         User.findOneAndUpdate(
                             { _id: req.body.friendId },
                             {$push: { friends: {
@@ -27,7 +25,7 @@ friendRouter.route('/')
                                 chat: savedChat._id
                             }}},
                             { new: true })
-                            .then(updatedFriend => res.status(201).send("It is done!"))
+                            .then(updatedFriend => res.status(201).send("You and the other user are now friends!"))
                             .catch(err => {
                                 res.status(500)
                                 return next(new Error("Failed to update the user's friend."))
