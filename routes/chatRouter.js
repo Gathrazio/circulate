@@ -19,7 +19,9 @@ chatRouter.route('/')
                                 ...message._doc,
                                 body: cryptr.decrypt(message.body)
                             }))
-                            return decryptedMessages;
+                            return {
+                                ...chat._doc,
+                                messages: decryptedMessages};
                         })
                         return res.status(200).send(decryptedChats);
                     })
@@ -83,7 +85,7 @@ chatRouter.route('/addmessage/:chatID')
             })
     })
 
-chatRouter.route('/editmessage/:chatID/:messageID')
+chatRouter.route('/editmessage/:chatID/:messageID') // updates a specific message of a specific chat, if the user has permission to do so.
     .put((req, res, next) => {
         User.findOne({ _id: req.auth._id })
             .then(user => {
@@ -94,11 +96,6 @@ chatRouter.route('/editmessage/:chatID/:messageID')
                 Chat.findOne({ _id: req.params.chatID })
                     .then(chat => {
                         const messageIndex = chat.messages.findIndex(message => message._id.toString() === req.params.messageID);
-                        console.log("message index", messageIndex)
-                        console.log("typeof ['a', 'b']", typeof ["a", "b"])
-                        console.log("['a', 'b'].toSpliced(0, 1, 'c')", ["a", "b"].toSpliced(0, 1, 'c'))
-                        console.log('typeof chat.messages:', typeof chat.messages)
-                        console.log('chat.messages[0]', chat.messages[0])
                         const updatedMessages = chat.messages.toSpliced(messageIndex, 1, {
                             _id: req.params.messageID,
                             author: req.auth._id,
