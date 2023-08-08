@@ -10,7 +10,7 @@ const messageSchema = new Schema({
         type: Schema.Types.ObjectId,
         required: true
     }
-}, { _id: false });
+});
 
 const chatSchema = new Schema({
     messages: {

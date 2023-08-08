@@ -4,6 +4,17 @@ const bcrypt = require('bcrypt');
 
 const saltRounds = 10;
 
+const requestSchema = new Schema({
+    sender: {
+        type: Schema.Types.ObjectId,
+        required: true
+    },
+    receiver: {
+        type: Schema.Types.ObjectId,
+        required: true
+    }
+}, { _id: false });
+
 const friendSchema = new Schema({
     friendId: {
         type: Schema.Types.ObjectId,
@@ -32,6 +43,10 @@ const userSchema = new Schema({
     friends: {
         type: [friendSchema],
         required: true
+    },
+    requests: {
+        type: [requestSchema],
+        required: true
     }
 });
 
@@ -57,6 +72,7 @@ userSchema.methods.justUsername = function () {
     delete user.password
     delete user.friends
     delete user.bioId
+    delete user.requests
     return user;
 }
 

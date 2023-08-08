@@ -16,7 +16,7 @@ chatRouter.route('/')
                     .then(chats => {
                         const decryptedChats = chats.map(chat => {
                             const decryptedMessages = chat.messages.map(message => ({
-                                author: message.author,
+                                ...message._doc,
                                 body: cryptr.decrypt(message.body)
                             }))
                             return decryptedMessages;
@@ -45,9 +45,9 @@ chatRouter.route('/find/:chatID')
                             return next(new Error("Chat does not exist."));
                         }
                         const decryptedChat = {
-                            ...chat,
+                            ...chat._doc,
                             messages: chat.messages.map(message => ({
-                                author: message.author,
+                                ...message._doc,
                                 body: cryptr.decrypt(message.body)
                             }))
                         }
@@ -79,6 +79,36 @@ chatRouter.route('/addmessage/:chatID')
                     .catch(err => {
                         res.status(500)
                         return next(new Error("Failed to call findOneAndUpdate."))
+                    })
+            })
+    })
+
+chatRouter.route('/editmessage/:chatID/:messageID')
+    .put((req, res, next) => {
+        User.findOne({ _id: req.auth._id })
+            .then(user => {
+                if (!user.friends.find(friend => friend.chat.toString() === req.params.chatID)) {
+                    res.status(403)
+                    return next(new Error("You do not have permission to add edit a message in this chat."))
+                }
+                Chat.findOne({ _id: req.params.chatID })
+                    .then(chat => {
+                        const messageIndex = chat.messages.findIndex(message => message._id.toString() === req.params.messageID);
+                        console.log("message index", messageIndex)
+                        console.log("typeof ['a', 'b']", typeof ["a", "b"])
+                        console.log("['a', 'b'].toSpliced(0, 1, 'c')", ["a", "b"].toSpliced(0, 1, 'c'))
+                        console.log('typeof chat.messages:', typeof chat.messages)
+                        console.log('chat.messages[0]', chat.messages[0])
+                        const updatedMessages = chat.messages.toSpliced(messageIndex, 1, {
+                            _id: req.params.messageID,
+                            author: req.auth._id,
+                            body: cryptr.encrypt(req.body.body)
+                        })
+                        Chat.findOneAndUpdate(
+                            { _id: req.params.chatID },
+                            { messages: updatedMessages },
+                            { new: true })
+                            .then(updatedChat => res.status(201).send("Chat updated."))
                     })
             })
     })

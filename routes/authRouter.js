@@ -13,7 +13,8 @@ authRouter.post('/signup', (req, res, next) => {
             }
             const newUser = new User({
                 ...req.body,
-                friends: []
+                friends: [],
+                requests: []
             });
             newUser.save()
                 .then(savedUser => {
