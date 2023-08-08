@@ -110,4 +110,25 @@ chatRouter.route('/editmessage/:chatID/:messageID') // updates a specific messag
             })
     })
 
+chatRouter.route('/deletemessage/:chatID/:messageID') // deletes a specific message of a specific chat, if the user has permission to do so.
+.delete((req, res, next) => {
+    User.findOne({ _id: req.auth._id })
+        .then(user => {
+            if (!user.friends.find(friend => friend.chat.toString() === req.params.chatID)) {
+                res.status(403)
+                return next(new Error("You do not have permission to add edit a message in this chat."))
+            }
+            Chat.findOne({ _id: req.params.chatID })
+                .then(chat => {
+                    const messageIndex = chat.messages.findIndex(message => message._id.toString() === req.params.messageID);
+                    const updatedMessages = chat.messages.toSpliced(messageIndex, 1)
+                    Chat.findOneAndUpdate(
+                        { _id: req.params.chatID },
+                        { messages: updatedMessages },
+                        { new: true })
+                        .then(updatedChat => res.status(201).send("Chat updated; message deleted."))
+                })
+        })
+})
+
 module.exports = chatRouter;

@@ -39,19 +39,16 @@ authRouter.post('/signup', (req, res, next) => {
                                     res.status(500)
                                     return next(err)
                                 })
-                            
                         })
                         .catch(err => {
                             res.status(500)
                             return next(err)
                         })
-                    
                 })
                 .catch(err => {
                     res.status(500)
                     return next(new Error('Failed the newUser .save.'));
                 })
-            
         })
         .catch(err => {
             res.status(500)
