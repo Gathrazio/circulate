@@ -4,7 +4,6 @@ const User = require('../models/User.js');
 const Chat = require('../models/Chat.js');
 const mongoose = require('mongoose');
 const axios = require('axios');
-const { TokenExpiredError } = require('jsonwebtoken');
 
 friendRouter.route('/add')
     .post((req, res, next) => { // makes the user who sent the request and another user specified in req.body friends, and creates a shared chat between them
