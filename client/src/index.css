@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Barlow', sans-serif;
+  font-family: 'IBM Plex Mono';
 }
 
 /* <Entry /> */
@@ -10,6 +10,7 @@
 .titlebar-wrapper {
   height: 20vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 2.5rem;
@@ -20,6 +21,11 @@
 .title {
   font-family: 'IBM Plex Mono' !important;
   font-weight: 300;
+}
+
+.slogan {
+  font-size: 0.8rem;
+  font-family: 'Julius Sans One'
 }
 
 .form-content-wrapper {
@@ -44,7 +50,8 @@
 
 .entry-input, .entry-button {
   padding: 15px;
-  font-size: 1.3rem;
+  font-size: 1rem;
+  font-weight: 400;
   border: none;
   border-radius: 8px;
   transition: 0.1s;
@@ -62,6 +69,7 @@
   color: rgb(255, 149, 149);
   margin-top: -10px;
   margin-bottom: 20px;
+  font-size: 0.8rem;
 }
 
 /* Navpage */
@@ -78,6 +86,15 @@
 
 .small-title {
   font-family: 'IBM Plex Mono';
+}
+
+.nav-icons {
+  color: black;
+  font-size: 2.5rem;
+}
+
+.highlighted {
+  color: white;
 }
 
 .navbar-wrapper {
