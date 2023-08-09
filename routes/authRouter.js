@@ -32,7 +32,7 @@ authRouter.post('/signup', (req, res, next) => {
                                     const token = jwt.sign(updatedUser.justUsername(), process.env.USER_SECRET);
                                     return res.status(201).send({
                                         token,
-                                        user: updatedUser.withoutPassword()
+                                        user: updatedUser.justSignIn()
                                     });
                                 })
                                 .catch(err => {
@@ -73,7 +73,10 @@ authRouter.post('/login', (req, res, next) => {
                     return next(new Error("Password is incorrect."));
                 }
                 const token = jwt.sign(user.justUsername(), process.env.USER_SECRET);
-                res.status(200).send({ token, user: user.withoutPassword() })
+                res.status(200).send({
+                    token,
+                    user: user.justSignIn()
+                })
             })
         })
         .catch(err => {

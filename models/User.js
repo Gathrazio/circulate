@@ -76,16 +76,22 @@ userSchema.methods.justUsername = function () {
     return user;
 }
 
-userSchema.methods.withoutPassword = function () {
-    const user = this.toObject();
-    delete user.password
-    return user;
-}
-
-userSchema.methods.withoutPasswordOrFriends = function () {
+userSchema.methods.justSignIn = function () {
     const user = this.toObject();
     delete user.password
     delete user.friends
+    delete user.__v
+    delete user.requests
+    return user;
+}
+
+userSchema.methods.justFluidInfo = function () {
+    const user = this.toObject();
+    delete user.password
+    delete user._id
+    delete user.username
+    delete user.__v
+    delete user.bioId
     return user;
 }
 
