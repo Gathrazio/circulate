@@ -40,6 +40,9 @@ const userSchema = new Schema({
     bioId: {
         type: Schema.Types.ObjectId
     },
+    profileId:{
+        type: Schema.Types.ObjectId
+    },
     friends: {
         type: [friendSchema],
         required: true
@@ -72,6 +75,7 @@ userSchema.methods.justUsername = function () {
     delete user.password
     delete user.friends
     delete user.bioId
+    delete user.profileId
     delete user.requests
     return user;
 }
@@ -90,6 +94,7 @@ userSchema.methods.justFluidInfo = function () {
     delete user.password
     delete user._id
     delete user.username
+    delete user.profileId
     delete user.__v
     delete user.bioId
     return user;

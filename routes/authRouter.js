@@ -2,6 +2,7 @@ const express = require('express');
 const authRouter = express.Router();
 const User = require('../models/User.js');
 const Biography = require('../models/Biography.js');
+const Profile = require('../models/Profile.js');
 const jwt = require('jsonwebtoken');
 
 authRouter.post('/signup', (req, res, next) => {
@@ -24,21 +25,35 @@ authRouter.post('/signup', (req, res, next) => {
                     })
                     newBio.save()
                         .then(savedBio => {
-                            User.findOneAndUpdate(
-                                { _id: savedUser._id.toString() },
-                                { bioId: savedBio._id.toString() },
-                                { new: true })
-                                .then(updatedUser => {
-                                    const token = jwt.sign(updatedUser.justUsername(), process.env.USER_SECRET);
-                                    return res.status(201).send({
-                                        token,
-                                        user: updatedUser.justSignIn()
-                                    });
+                            const newProfile = new Profile({
+                                imgUrl: ''
+                            });
+                            newProfile.save()
+                                .then(savedProfile => {
+                                    User.findOneAndUpdate(
+                                        { _id: savedUser._id.toString() },
+                                        {
+                                            bioId: savedBio._id.toString(),
+                                            profileId: savedProfile._id.toString()
+                                        },
+                                        { new: true })
+                                        .then(updatedUser => {
+                                            const token = jwt.sign(updatedUser.justUsername(), process.env.USER_SECRET);
+                                            return res.status(201).send({
+                                                token,
+                                                user: updatedUser.justSignIn()
+                                            });
+                                        })
+                                        .catch(err => {
+                                            res.status(500)
+                                            return next(err)
+                                        })
                                 })
                                 .catch(err => {
                                     res.status(500)
                                     return next(err)
                                 })
+                            
                         })
                         .catch(err => {
                             res.status(500)
