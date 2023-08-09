@@ -111,8 +111,76 @@
   background-color: rgba(63, 93, 124, 0.823);
 }
 
-
 .conditional-content-wrapper {
   height: 80vh;
   background-color: rgba(60, 71, 82, 0.823);
+}
+
+/* <ProfileContent /> */
+
+.view-reqs {
+  height: 8vh;
+  background-color: rgb(198, 200, 201);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.profile-block {
+  height: 36vh;
+}
+
+.bio-block {
+  height: 28vh;
+  overflow-y: scroll;
+}
+
+.profile-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-bio {
+  height: 8vh;
+  background-color: rgb(54, 75, 93);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-pic {
+  border-radius: 50px;
+  border: 2px solid white;
+  width: 200px;
+}
+
+.profile-change-button {
+  border: none;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  padding: 5px;
+  margin: 10px;
+}
+
+.username-block {
+  margin: 10px;
+  color: white;
+}
+
+.bio-title {
+  margin: 5px;
+  font-size: 1rem;
+}
+
+.bio-text {
+  padding: 15px;
+  font-size: 0.8rem;
+}
+
+.profile-block {
+  background-color: rgba(88, 135, 182, 0.823);
 }
