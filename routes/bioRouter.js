@@ -28,7 +28,8 @@ bioRouter.put('/update', (req, res, next) => { // updates bio of current user
 bioRouter.get('/', (req, res, next) => { // gets bio of current user
     User.findOne({ _id: req.auth._id })
         .then(user => {
-            Biography.findOne({ _id: user.bioId })
+            console.log('user.bioId', user.bioId.toString())
+            Biography.findOne({ _id: user.bioId.toString() })
                 .then(bio => {
                     const decryptedBio = {
                         ...bio._doc,
