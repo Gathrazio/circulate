@@ -19,6 +19,8 @@ profileRouter.route('/')
                 return next(new Error("Failed to find user."));
             })
     })
+
+profileRouter.route('/update')
     .put((req, res, next) => { // updates the user's profile pic with whatever is provided in the request body
         User.findOne({ _id: req.auth._id })
             .then(user => {
@@ -26,7 +28,7 @@ profileRouter.route('/')
                     { _id: user.profileId },
                     req.body,
                     { new: true })
-                    .then(updatedProfile => res.status(201).send(updatedProfile))
+                    .then(updatedProfile => res.status(201).send("Profile successfully updated."))
                     .catch(err => {
                         res.status(500)
                         return next(new Error("Failed to update profile."));

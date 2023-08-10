@@ -13,7 +13,7 @@ bioRouter.put('/update', (req, res, next) => { // updates bio of current user
                 { _id: user.bioId },
                 { body: biocryptr.encrypt(req.body.body)},
                 { new: true })
-                .then(updatedBio => res.status(201).send(updatedBio))
+                .then(updatedBio => res.status(201).send("Bio updated successfully"))
                 .catch(err => {
                     res.status(500)
                     return next(new Error("Failed to update bio."))
@@ -31,9 +31,15 @@ bioRouter.get('/', (req, res, next) => { // gets bio of current user
             console.log('user.bioId', user.bioId.toString())
             Biography.findOne({ _id: user.bioId.toString() })
                 .then(bio => {
-                    const decryptedBio = {
+                    let decryptedBio = {
                         ...bio._doc,
-                        body: biocryptr.decrypt(bio.body)
+                        body: ''
+                    };
+                    if (bio.body) {
+                        decryptedBio = {
+                            ...bio._doc,
+                            body: biocryptr.decrypt(bio.body)
+                        }
                     }
                     return res.status(200).send(decryptedBio);
                 })
