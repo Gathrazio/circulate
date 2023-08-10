@@ -13,7 +13,7 @@ const requestSchema = new Schema({
         type: Schema.Types.ObjectId,
         required: true
     }
-}, { _id: false });
+});
 
 const friendSchema = new Schema({
     friendId: {
@@ -24,7 +24,7 @@ const friendSchema = new Schema({
         type: Schema.Types.ObjectId,
         required: true
     }
-}, { _id: false })
+})
 
 const userSchema = new Schema({
     username: {

@@ -39,7 +39,9 @@ export default function ProfileMain ({updateToggle, staticUserInfo}) {
     const editProfileToggleAction = () => async () => {
         if (editProfileToggle) {
             try {
-                const res = await userAxios.put('/api/protected/profiles/update', profileUrl)
+                const res = await userAxios.put('/api/protected/profiles/update', {
+                    imgUrl: profileUrl
+                })
                 console.log(res.data)
                 setEditProfileToggle(false)
                 return;
@@ -65,10 +67,15 @@ export default function ProfileMain ({updateToggle, staticUserInfo}) {
 
     useEffect(() => {
         const fetchData = async () => {
-            const bioRes = await userAxios.get('/api/protected/biographies')
-            const profileRes = await userAxios.get('/api/protected/profiles')
-            setProfileUrl(profileRes.data.imgUrl)
-            setBioBody(bioRes.data.body)
+            try {
+                const bioRes = await userAxios.get('/api/protected/biographies')
+                const profileRes = await userAxios.get('/api/protected/profiles')
+                setProfileUrl(profileRes.data.imgUrl)
+                setBioBody(bioRes.data.body)
+            } catch (err) {
+                console.log(err.response.data.errMsg)
+            }
+            
         }
         fetchData()
     }, [])
@@ -103,12 +110,12 @@ export default function ProfileMain ({updateToggle, staticUserInfo}) {
                     @{JSON.parse(localStorage.getItem('staticUserInfo')).username}
                 </div>
                 {editProfileToggle ?
-                <input type="text" value={profileUrl || ''} onChange={profileUrlChange}/>
+                <input type="text" className="profile-input" value={profileUrl || ''} onChange={profileUrlChange}/>
                 :
                 <img className="profile-pic" src={profileDesignation()} alt="" />
                 }
                 
-                <button className="profile-change-button" onClick={editProfileToggleAction()}>Change profile picture</button>
+                <button className="profile-change-button" onClick={editProfileToggleAction()}>{editProfileToggle ? 'Update profile picture' : 'Edit profile picture'}</button>
             </div>
             <div className="bio-block">
                 { editBioToggle ? 
