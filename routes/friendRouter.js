@@ -138,4 +138,18 @@ friendRouter.route('/request')
         }
     })
 
+friendRouter.route('/')
+    .get((req, res, next) => { // gets the friends of a user, but only light info
+        User.findOne({ _id: req.auth._id })
+            .then(user => {
+                const friendIds = user.friends.map(friend => friend.friendId.toString());
+                console.log('friendIds', friendIds)
+                User.find({ _id: { $in: friendIds}})
+                    .then(friends => {
+                        console.log(friends)
+                        return res.status(200).send(friends.map(friend => friend.justUsernameAndProfileAndBioId()))
+                    })
+            })
+    })
+
 module.exports = friendRouter;

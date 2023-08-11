@@ -100,4 +100,13 @@ userSchema.methods.justFluidInfo = function () {
     return user;
 }
 
+userSchema.methods.justUsernameAndProfileAndBioId = function () {
+    const user = this.toObject();
+    delete user.password
+    delete user.__v
+    delete user.friends
+    delete user.requests
+    return user;
+}
+
 module.exports = mongoose.model("User", userSchema);

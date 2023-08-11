@@ -50,6 +50,11 @@ profileRouter.route('/all')
             })
     })
 
+profileRouter.post('/collection', (req, res, next) => {
+    Profile.find({ _id: {$in: req.body.collection}})
+        .then(profiles => res.status(200).send(profiles))
+})
+
 
 
 

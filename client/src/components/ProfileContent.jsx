@@ -19,10 +19,6 @@ export default function ProfileContent ({staticUserInfo}) {
         }
     }
 
-    useEffect(() => {
-        
-    }, [displayToggle])
-
     return (
         <div className="profile-content-wrapper content-wrapper">
             {setDisplay(displayToggle)}
