@@ -29,12 +29,12 @@ export default function UserProfile ({userInfo, updateToggleUtility}) {
                         Go Back
                     </div>
                     <div className="friend-profile-title">
-                        Friend Profile
+                        User's Profile
                     </div>
             </div>
             <div className="profile-block friend-area">
                 <div className="username-block">
-                    @{userInfo.username}, your friend!
+                    @{userInfo.username}
                 </div>
                 <img className="profile-pic" src={profileDesignation(userInfo.profileUrl)} alt="" />
             </div>

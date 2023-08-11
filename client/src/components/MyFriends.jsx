@@ -15,6 +15,12 @@ export default function MyFriends ({updateToggleUtility}) {
     const [friendListToggle, setFriendListToggle] = useState(false);
     const friendListAction = () => () => setFriendListToggle(prev => !prev);
     const [friends, setFriends] = useState(null);
+    const [userFriendArray, setUserFriendArray] =  useState([]);
+
+    const updateFriends = (friendId) => {
+        const deleteIndex = friends.findIndex(friend => friend._id === friendId);
+        setFriends(prev => prev.toSpliced(deleteIndex, 1))
+    }
 
     console.log('friends', friends)
 
@@ -33,7 +39,7 @@ export default function MyFriends ({updateToggleUtility}) {
             )
         } else {
             return (
-                friends.map(friend => <FriendListPiece key={friend._id} friend={friend} updateToggleUtility={updateToggleUtility}/>)
+                friends.map(friend => <FriendListPiece key={friend._id} friend={friend} updateToggleUtility={updateToggleUtility} userFriendArray={userFriendArray} updateFriends={updateFriends}/>)
             )
         }
     } 
@@ -42,14 +48,13 @@ export default function MyFriends ({updateToggleUtility}) {
         const fetchData = async () => {
             try {
                 const friendsRes = await userAxios.get('/api/protected/friends');
-                console.log('friendsRes.data', friendsRes.data)
                 const bioIdCollection = friendsRes.data.map(friend => friend.bioId);
                 const profileIdCollection = friendsRes.data.map(friend => friend.profileId);
                 console.log('bioIdCollection', bioIdCollection)
                 const biosRes = await userAxios.post('/api/protected/biographies/collection', {collection: bioIdCollection});
                 const profilesRes = await userAxios.post('/api/protected/profiles/collection', {collection: profileIdCollection});
-                console.log('bioRes.data', biosRes.data)
-                console.log('profilesRes.data', profilesRes.data)
+                const fluidUserInfoRes = await userAxios.get('/api/protected/users')
+                setUserFriendArray(fluidUserInfoRes.data.friends)
                 setFriends(friendsRes.data.map(friend => ({
                     ...friend,
                     biography: biosRes.data.find(bio => bio._id === friend.bioId).body,

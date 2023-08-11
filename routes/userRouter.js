@@ -25,4 +25,19 @@ userRouter.route('/all')
             })
     })
 
+userRouter.route('/friendsearchusers')
+    .get((req, res, next) => { // regex search for users that are not the current user's friend
+        const { username } = req.query;
+        const pattern = new RegExp(username);
+        User.find({ username : { $regex: pattern, $options: 'i'}})
+            .then(regexFilteredUsers => {
+                const friendFilteredUsers = regexFilteredUsers.filter(user => !Boolean(user.friends.find(friend => friend.friendId.toString() === req.auth._id)) && user._id != req.auth._id);
+                return res.status(200).send(friendFilteredUsers.map(filteredUser => filteredUser.justUsernameAndProfileAndBioId()));
+            })
+            .catch(err => {
+                res.status(500)
+                return next(err)
+            })
+    })
+
 module.exports = userRouter;

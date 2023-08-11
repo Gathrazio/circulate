@@ -208,7 +208,7 @@
 }
 
 .inbound, .outbound {
-  height: 12vh;
+  height: 8vh;
   background-color: rgb(168, 209, 245);
   display: flex;
   border-top: 1px solid black;
@@ -228,6 +228,8 @@
   height: 8vh;
   display: flex;
   justify-content: center;
+  color: white;
+  padding: 10px;
   align-items: center;
 }
 
@@ -238,6 +240,7 @@
 .req-buttons-block {
   height: 100%;
   width: 50%;
+  border-right: 1px solid black;
 }
 
 .req-buttons-block-inbound {
@@ -270,12 +273,13 @@
 }
 
 .outbound-req-wrapper, .inbound-req-wrapper {
-  height: 8vh;
+  height: 12vh;
   background-color: rgb(131, 196, 182);
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-top: 1px solid black;
+  border-left: 1px solid black;
 }
 
 /* Friends */
@@ -320,6 +324,7 @@
 .searchbar {
   height: 8vh;
   background-color: bisque;
+  border-bottom: 1px solid black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -369,4 +374,76 @@
   justify-content: center;
   align-items: center;
   background-color: aqua;
-}   
+}
+
+.searched-user-wrapper {
+  height: 12vh;
+  background-color: rgb(179, 108, 246);
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.searched-user-text, .searched-user-button-block {
+  height: 100%;
+}
+
+.friend-list {
+  border-top: 1px solid black;
+}
+
+.pic-blurb {
+  height: 70px;
+}
+
+.spacer-bar {
+  height: 8vh;
+  background-color: rgba(60, 71, 82, 0.823);
+}
+
+.profile-search-img-container {
+  height: 70px;
+  border-radius: 10px;
+  border: 1px solid white;
+  margin-left: 1vh;
+  margin-right: 1vh;
+  display: flex;
+  justify-content: center;
+  width: 70px;
+  overflow: hidden;
+}
+
+.searched-user-text {
+  width: 50%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  border-right: 1px solid black;
+}
+
+.searched-user-button-block {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+}
+
+.view-profile-button, .send-request-button {
+  width: 50%;
+  height: 100%;
+  border: none;
+}
+
+.view-profile-button {
+  border-right: 1px solid black;
+}
+
+.no-click {
+  pointer-events: none;
+}
+
+.no-click:hover {
+  cursor: not-allowed;
+}

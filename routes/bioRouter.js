@@ -67,7 +67,7 @@ bioRouter.post('/collection', (req, res, next) => {
     Biography.find({ _id: {$in: req.body.collection}})
         .then(biographies => res.status(200).send(biographies.map(biography => ({
             ...biography._doc,
-            body: biocryptr.decrypt(biography.body)
+            body: biography.body ? biocryptr.decrypt(biography.body) : ''
         }))))
 })
 
