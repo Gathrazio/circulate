@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import loading from '../assets/loading.gif'
 import defaultProfile from '../assets/default_profile.jpg'
+import {IconContext} from 'react-icons'
+import {BiLogOut} from 'react-icons/bi'
 
 const userAxios = axios.create();
 
@@ -11,7 +13,7 @@ userAxios.interceptors.request.use(config => {
     return config;
 })
 
-export default function ProfileMain ({updateToggle, staticUserInfo}) {
+export default function ProfileMain ({updateToggle, tryToNavigate}) {
 
     const toggleAction = () => () => updateToggle(1);
     const [editBioToggle, setEditBioToggle] = useState(false);
@@ -99,11 +101,18 @@ export default function ProfileMain ({updateToggle, staticUserInfo}) {
             return bioBody;
         }
     }
+
+    const handleLogout = () => {
+        localStorage.removeItem('token')
+        localStorage.removeItem('staticUserInfo')
+        console.log(typeof updateToken)
+        tryToNavigate('/')
+    }
     
     return (
         <>
             <div className="view-reqs" onClick={toggleAction()}>
-                    View active inbound/outbound requests
+                View active inbound/outbound requests
             </div>
             <div className="profile-block">
                 <div className="username-block">

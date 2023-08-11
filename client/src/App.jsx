@@ -31,7 +31,7 @@ export default function App() {
             path="/navpage"
             element={ 
               <Protected token={token} redirectTo="/">
-                <Navpage />
+                <Navpage updateToken={updateToken}/>
               </Protected>  
             }
           />

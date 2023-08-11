@@ -97,14 +97,18 @@
   color: white;
 }
 
+.colored-icon {
+  color: rgb(29, 241, 188);
+}
+
 .navbar-wrapper {
   height: 12vh;
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
-.chat-select, .friend-select, .profile-select {
+.chat-select, .friend-select, .profile-select, .logout {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -122,6 +126,7 @@
   height: 8vh;
   background-color: rgb(198, 200, 201);
   display: flex;
+  padding: 5px;
   justify-content: center;
   align-items: center;
 }
@@ -155,6 +160,25 @@
   justify-content: center;
   align-items: center;
   height: 100%;
+}
+
+.view-reqs-wrapper {
+  display: flex;
+  height: 100%;
+}
+
+.sub-nav-icons {
+  font-size: 2rem;
+  margin-left: -5px;
+}
+
+.logout-wrapper {
+  height: 8vh;
+  background-color: crimson;
+  width: 33.3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .edit-bio {

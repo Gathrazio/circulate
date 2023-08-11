@@ -3,31 +3,27 @@ import ProfileContent from './ProfileContent.jsx'
 import ChatContent from './ChatContent.jsx'
 import FriendContent from './FriendContent.jsx'
 import SmallTitlebar from './SmallTitlebar.jsx'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 
-export default function Navpage () {
+export default function Navpage ({updateToken}) {
 
-    const [staticUserInfo, setStaticUserInfo] = useState(JSON.parse(localStorage.getItem('staticUserInfo')));
     const [displayContent, setDisplayContent] = useState(<ProfileContent />);
-
-    console.log('navpage rendered')
 
     function updateToggle (update) {
         if (update === 0) {
-            setDisplayContent(<ProfileContent staticUserInfo={staticUserInfo}/>)
+            setDisplayContent(<ProfileContent />)
         } else if (update === 1) {
-            setDisplayContent(<ChatContent staticUserInfo={staticUserInfo}/>)
+            setDisplayContent(<ChatContent />)
         } else if (update === 2) {
-            setDisplayContent(<FriendContent staticUserInfo={staticUserInfo}/>)
+            setDisplayContent(<FriendContent />)
         }
     }
-
 
     return (
         <div className="navpage-wrapper">
             <SmallTitlebar />
-            <Navbar updateToggle={updateToggle}/>
+            <Navbar updateToggle={updateToggle} updateToken={updateToken}/>
             <div className="conditional-content-wrapper">
                 {displayContent}
             </div>

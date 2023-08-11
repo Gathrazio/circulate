@@ -1,9 +1,10 @@
 import { IconContext } from 'react-icons';
 import { BsFillPersonFill, BsPeopleFill, BsFillChatLeftDotsFill, BsFillChatDotsFill } from 'react-icons/bs'
 import { useState } from 'react'
+import {BiLogOut} from 'react-icons/bi'
 
 
-export default function Navbar ({updateToggle}) {
+export default function Navbar ({updateToggle, updateToken}) {
 
     const [highlightToggle, setHighlightToggle] = useState([true, false, false]);
 
@@ -17,8 +18,24 @@ export default function Navbar ({updateToggle}) {
         }
         updateToggle(update)
     }
+
+    const handleLogout = () => {
+        localStorage.removeItem('token')
+        localStorage.removeItem('staticUserInfo')
+        updateToken('')
+    }
+
     return (
         <div className="navbar-wrapper">
+            <div className="logout" onClick={handleLogout}>
+                <div className="select-text" onClick={action(0)}>
+                    <IconContext.Provider value={{
+                        className: `nav-icons colored-icon`
+                    }}>
+                        <BiLogOut />
+                    </IconContext.Provider>
+                </div>  
+            </div>
             <div className="profile-select">
             <div className="select-text" onClick={action(0)}>
                     <IconContext.Provider value={{
