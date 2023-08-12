@@ -22,8 +22,6 @@ export default function MyFriends ({updateToggleUtility}) {
         setFriends(prev => prev.toSpliced(deleteIndex, 1))
     }
 
-    console.log('friends', friends)
-
     const friendListDesignator = () => {
         if (friends === null) {
             return (
@@ -50,7 +48,6 @@ export default function MyFriends ({updateToggleUtility}) {
                 const friendsRes = await userAxios.get('/api/protected/friends');
                 const bioIdCollection = friendsRes.data.map(friend => friend.bioId);
                 const profileIdCollection = friendsRes.data.map(friend => friend.profileId);
-                console.log('bioIdCollection', bioIdCollection)
                 const biosRes = await userAxios.post('/api/protected/biographies/collection', {collection: bioIdCollection});
                 const profilesRes = await userAxios.post('/api/protected/profiles/collection', {collection: profileIdCollection});
                 const fluidUserInfoRes = await userAxios.get('/api/protected/users')

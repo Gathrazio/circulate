@@ -13,102 +13,20 @@ userAxios.interceptors.request.use(config => {
     return config;
 })
 
-export default function ProfileMain ({updateToggle, tryToNavigate}) {
+export default function ProfileMain ({
+    toggleAction,
+    editProfileToggleAction,
+    bioChange,
+    profileUrlChange,
+    profileDesignation,
+    bioDesignation,
+    editBioToggle,
+    editProfileToggle,
+    bioBody,
+    profileUrl,
+    editBioToggleAction
+}) {
 
-    const toggleAction = () => () => updateToggle(1);
-    const [editBioToggle, setEditBioToggle] = useState(false);
-    const [editProfileToggle, setEditProfileToggle] = useState(false);
-    const [bioBody, setBioBody] = useState(null);
-    const [profileUrl, setProfileUrl] = useState(null);
-
-    const editBioToggleAction = () => async () => {
-        if (editBioToggle) {
-            try {
-                const res = await userAxios.put('/api/protected/biographies/update', {
-                body: bioBody
-                })
-                console.log(res.data)
-                setEditBioToggle(false)
-                return;
-            } catch (err) {
-                console.log(err.response.data.errMsg)
-                return;
-            } 
-        }
-        setEditBioToggle(true)
-    }
-
-    const editProfileToggleAction = () => async () => {
-        if (editProfileToggle) {
-            try {
-                const res = await userAxios.put('/api/protected/profiles/update', {
-                    imgUrl: profileUrl
-                })
-                console.log(res.data)
-                setEditProfileToggle(false)
-                return;
-            } catch (err) {
-                console.log(err.response.data.errMsg)
-                return;
-            }
-        }
-        setEditProfileToggle(true)
-    }
-
-    function bioChange (e) {
-        const {value} = e.target;
-        setBioBody(value)
-    }
-
-    function profileUrlChange (e) {
-        const {value} = e.target;
-        setProfileUrl(value)
-    }
-
-    console.log('profile main rendered')
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const bioRes = await userAxios.get('/api/protected/biographies')
-                const profileRes = await userAxios.get('/api/protected/profiles')
-                setProfileUrl(profileRes.data.imgUrl)
-                setBioBody(bioRes.data.body)
-            } catch (err) {
-                console.log(err.response.data.errMsg)
-            }
-            
-        }
-        fetchData()
-    }, [])
-
-    function profileDesignation () {
-        if (!profileUrl && profileUrl != '') {
-            return loading;
-        } else if (!profileUrl) {
-            return defaultProfile;
-        } else {
-            return profileUrl;
-        }
-    }
-
-    function bioDesignation () {
-        if (!bioBody && bioBody != '') {
-            return "Loading..."
-        } else if (!bioBody) {
-            return "Click 'edit bio' to update your biography!"
-        } else {
-            return bioBody;
-        }
-    }
-
-    const handleLogout = () => {
-        localStorage.removeItem('token')
-        localStorage.removeItem('staticUserInfo')
-        console.log(typeof updateToken)
-        tryToNavigate('/')
-    }
-    
     return (
         <>
             <div className="view-reqs" onClick={toggleAction()}>

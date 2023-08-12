@@ -12,22 +12,27 @@ userAxios.interceptors.request.use(config => {
 
 export default function SearchedUser ({user, updateToggleUtility, userFluidInfo}) {
 
+    
+    
     let initStateText = "...";
-
+    
     const [reqButtonText, setReqButtonText] = useState(initStateText);
 
-    useEffect(() => {
-        const fetchData = async () => {
+    const determineButtonText = () => {
+        if (userFluidInfo) {
             if (userFluidInfo.requests.find(request => request.sender === user._id)) {
-                setReqButtonText("Pending Your Response")
+            setReqButtonText("Pending Your Response")
             } else if (userFluidInfo.requests.find(request => request.receiver == user._id)) {
                 setReqButtonText("Request Sent")
             } else {
                 setReqButtonText("Send Request")
             }
         }
-        fetchData()
-    }, [])
+    }
+        
+    useEffect(() => {
+        determineButtonText()
+    }, [userFluidInfo])
 
     const handleRequestClick = async () => {
         try {
@@ -36,14 +41,10 @@ export default function SearchedUser ({user, updateToggleUtility, userFluidInfo}
         } catch (err) {
             console.log(err)
         }
-        
-
     }
 
-    
-
-    
     const updateToggleUtilityAction = () => () => updateToggleUtility(1, user);
+    
     return (
         <div className="searched-user-wrapper">
             <div className="searched-user-text">

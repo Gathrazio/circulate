@@ -117,10 +117,6 @@ export default function ViewReqs ({updateToggle}) {
         fetchData()
     }, [])
 
-    console.log('inbound reqs:', inboundReqInfos)
-    console.log('outbound reqs:', outboundReqInfos)
-
-    console.log('profile view reqs rendered')
     return (
         <div className="reqs-wrapper">
             <div className="go-back" onClick={action()}>

@@ -126,7 +126,6 @@
   height: 8vh;
   background-color: rgb(198, 200, 201);
   display: flex;
-  padding: 5px;
   justify-content: center;
   align-items: center;
 }
@@ -393,7 +392,7 @@
 
 .go-back-friend {
   width: 33.3%;
-  height: 100%;
+  height: 8vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -470,4 +469,47 @@
 
 .no-click:hover {
   cursor: not-allowed;
+}
+
+/* Chat */
+
+.chat-user {
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+}
+
+.chat-user-text {
+  width: 75%;
+}
+
+.chat-content-wrapper {
+  overflow-y: scroll;
+}
+
+.chat-wrapper {
+  height: 80vh;
+  background-color: rgb(176, 182, 193);
+}
+
+.chat-space {
+  height: 60vh;
+  border: 2px solid green;
+}
+
+.chat-bar, .chat-textarea {
+  height: 12vh;
+  display: flex;
+}
+
+.chat-textarea {
+  height: 12vh;
+  width: 75%;
+  border: none;
+}
+
+.send-chat-button {
+  width: 25%;
+  height: 12vh;
+  border: none;
 }
