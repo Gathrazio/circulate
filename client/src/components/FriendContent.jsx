@@ -3,6 +3,7 @@ import FriendSearch from './FriendSearch.jsx'
 import UserProfile from './UserProfile.jsx'
 import SearchedUser from './SearchedUser.jsx'
 import {useState, useEffect } from 'react'
+import loadingBalls from '../assets/loading_gif_cool.gif'
 import axios from 'axios'
 
 const userAxios = axios.create();
@@ -66,7 +67,7 @@ export default function FriendContent () {
         if (searchedUsers === null || thinking) {
             return (
                 <div className="loading-placeholder">
-                    Loading...
+                    <img src={loadingBalls} className="loading-balls" />
                 </div>
             )
         } else if (searchedUsers.length === 0) {

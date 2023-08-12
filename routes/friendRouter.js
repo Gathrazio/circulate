@@ -150,4 +150,16 @@ friendRouter.route('/')
             })
     })
 
+friendRouter.route('/chatrelated')
+    .get((req, res, next) => {
+        User.findOne({ _id: req.auth._id })
+            .then(user => {
+                const friendIds = user.friends.map(friend => friend.friendId.toString());
+                User.find({ _id: { $in: friendIds}})
+                    .then(friends => {
+                        return res.status(200).send(friends.map(friend => friend.justUsernameAndProfileIdAndFriends()))
+                    })
+            })
+    })
+
 module.exports = friendRouter;

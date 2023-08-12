@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import FriendListPiece from './FriendListPiece.jsx'
+import loadingBalls from '../assets/loading_gif_cool.gif'
 import axios from 'axios'
 
 const userAxios = axios.create();
@@ -26,7 +27,7 @@ export default function MyFriends ({updateToggleUtility}) {
         if (friends === null) {
             return (
                 <div className="loading-placeholder">
-                    Loading...
+                    <img src={loadingBalls} className="loading-balls" />
                 </div>
             )
         } else if (friends.length === 0) {

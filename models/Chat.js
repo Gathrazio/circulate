@@ -9,6 +9,11 @@ const messageSchema = new Schema({
     author: {
         type: Schema.Types.ObjectId,
         required: true
+    },
+    status: {
+        type: String,
+        enum: ["Sent", "Read"],
+        default: "Sent"
     }
 });
 

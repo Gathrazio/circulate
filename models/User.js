@@ -109,4 +109,13 @@ userSchema.methods.justUsernameAndProfileAndBioId = function () {
     return user;
 }
 
+userSchema.methods.justUsernameAndProfileIdAndFriends = function () {
+    const user = this.toObject();
+    delete user.password
+    delete user.__v
+    delete user.requests
+    delete user.bioId
+    return user;
+}
+
 module.exports = mongoose.model("User", userSchema);

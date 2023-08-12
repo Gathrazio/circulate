@@ -248,7 +248,7 @@
 }
 
 .loading-placeholder {
-  height: 8vh;
+  height: 20vh;
   display: flex;
   justify-content: center;
   color: white;
@@ -493,8 +493,10 @@
 }
 
 .chat-space {
-  height: 60vh;
-  border: 2px solid green;
+  height: 56vh;
+  padding-bottom: 10px;
+  padding-top: 0px;
+  overflow-y: scroll;
 }
 
 .chat-bar, .chat-textarea {
@@ -506,10 +508,56 @@
   height: 12vh;
   width: 75%;
   border: none;
+  padding: 5px;
 }
 
 .send-chat-button {
   width: 25%;
   height: 12vh;
   border: none;
+}
+
+.chat-chat {
+  height: 12vh;
+}
+
+.chat-message-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.chat-message-body {
+  background-color: white;
+  padding: 5px;
+  border-radius: 8px;
+  margin: 10px;
+  margin-bottom: 0px;
+  max-width: 70%;
+}
+
+.right {
+  justify-content: right;
+  flex-direction: row-reverse;
+}
+
+.right > .chat-message-body {
+  background-color: aquamarine;
+}
+
+.left > .chat-message-body {
+  background-color: rgb(108, 205, 234);
+}
+
+.left {
+  justify-content: left;
+}
+
+.loading-balls {
+  height: 100px;
+}
+
+.show-status {
+  font-size: 0.8rem;
+  color: rgb(93, 93, 93);
+
 }

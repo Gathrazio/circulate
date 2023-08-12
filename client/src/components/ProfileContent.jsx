@@ -3,6 +3,7 @@ import ProfileMain from './ProfileMain.jsx'
 import ViewReqs from './ViewReqs.jsx'
 import { useNavigate } from 'react-router-dom'
 import loading from '../assets/loading.gif'
+import loadingBalls from '../assets/loading_gif_cool.gif'
 import defaultProfile from '../assets/default_profile.jpg'
 import axios from 'axios'
 
@@ -126,7 +127,7 @@ export default function ProfileContent () {
 
     function bioDesignation () {
         if (!bioBody && bioBody != '') {
-            return "Loading..."
+            return <img src={loadingBalls} className="loading-balls" />
         } else if (!bioBody) {
             return "Click 'edit bio' to update your biography!"
         } else {

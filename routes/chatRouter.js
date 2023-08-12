@@ -77,7 +77,10 @@ chatRouter.route('/addmessage/:chatID')
                         author: req.auth._id
                     }}},
                     { new: true })
-                    .then(updatedChat => res.status(201).send("Chat updated!"))
+                    .then(updatedChat => res.status(201).send({
+                        ...updatedChat.messages[updatedChat.messages.length - 1]._doc,
+                        body: cryptr.decrypt(updatedChat.messages[updatedChat.messages.length - 1].body)
+                    }))
                     .catch(err => {
                         res.status(500)
                         return next(new Error("Failed to call findOneAndUpdate."))
@@ -91,7 +94,7 @@ chatRouter.route('/editmessage/:chatID/:messageID') // updates a specific messag
             .then(user => {
                 if (!user.friends.find(friend => friend.chat.toString() === req.params.chatID)) {
                     res.status(403)
-                    return next(new Error("You do not have permission to add edit a message in this chat."))
+                    return next(new Error("You do not have permission to edit a message in this chat."))
                 }
                 Chat.findOne({ _id: req.params.chatID })
                     .then(chat => {
@@ -106,6 +109,34 @@ chatRouter.route('/editmessage/:chatID/:messageID') // updates a specific messag
                             { messages: updatedMessages },
                             { new: true })
                             .then(updatedChat => res.status(201).send("Chat updated."))
+                    })
+            })
+    })
+
+chatRouter.route('/updatetoread/:chatID')
+    .put((req, res, next) => {
+        User.findOne({ _id: req.auth._id })
+            .then(user => {
+                if (!user.friends.find(friend => friend.chat.toString() === req.params.chatID)) {
+                    res.status(403)
+                    return next(new Error("You do not have permission to edit messages in this chat."))
+                }
+                Chat.findOne({ _id: req.params.chatID })
+                    .then(chat => {
+                        const stampedMessages = chat.messages.map(message => message.author != req.auth._id ? {...message._doc, status: "Read"} : message)
+                        Chat.findOneAndUpdate(
+                            { _id: req.params.chatID },
+                            { messages: stampedMessages},
+                            { new: true})
+                            .then(updatedChat => res.status(201).send(updatedChat.messages.map(message => ({...message._doc, body: cryptr.decrypt(message.body)}))))
+                            .catch(err => {
+                                res.status(500)
+                                return next(err);
+                            })
+                    })
+                    .catch(err => {
+                        res.status(500)
+                        return next(err);
                     })
             })
     })
