@@ -3,6 +3,7 @@ import Chat from './Chat.jsx'
 import ChatUser from './ChatUser.jsx'
 import loadingBalls from '../assets/loading_gif_cool.gif'
 import axios from 'axios'
+import SmartInterval from 'smartinterval'
 
 const userAxios = axios.create();
 
@@ -19,6 +20,18 @@ export default function ChatContent () {
     function updateToggleUtility (update, friendIndex) {
         setDisplayToggleUtility([update, friendIndex])
     }
+
+    useEffect(() => {
+        const dataFetcher = new SmartInterval(fetchData, 5000);
+        dataFetcher.start()
+        return () => {
+            dataFetcher.stop()
+        }
+    }, [])
+
+    // useEffect(() => {
+    //     const intervalID = setInterval(() => fetchData(), 5000)
+    // }, [])
 
     /* New Stuff */
 
@@ -49,37 +62,33 @@ export default function ChatContent () {
     const [friends, setFriends] = useState(null);
     const [thinking, setThinking] = useState(false);
 
-    console.log('friends', friends)
+    const fetchData = async () => {
+        try {
+            const searchRes = await userAxios.get(`/api/protected/friends/chatrelated`)
+            if (searchRes.data.length != 0) {
+                const profileIdCollection = searchRes.data.map(user => user.profileId);
+                const profilesRes = await userAxios.post('/api/protected/profiles/collection', {collection: profileIdCollection});
+                const chatIds = searchRes.data.map(friend => friend.friends.find(friendObj => friendObj.friendId === JSON.parse(localStorage.getItem('staticUserInfo'))._id).chat)
+                const chats = await userAxios.get('/api/protected/chats');
+                const orderedChats = chatIds.map(id => chats.data.find(chat => chat._id === id).messages);
+                setFriends(searchRes.data.map((user, i) => {
+                    delete user.friends
+                    return {
+                    ...user,
+                    profileUrl: profilesRes.data.find(profile => profile._id === user.profileId).imgUrl,
+                    chat: orderedChats[i],
+                    chatId: chatIds[i]
+                    }
+                }))
+            } else {
+                setFriends([])
+            }
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                setThinking(true)
-                const searchRes = await userAxios.get(`/api/protected/friends/chatrelated`)
-                if (searchRes.data.length != 0) {
-                    console.log('searchRes.data', searchRes.data)
-                    const profileIdCollection = searchRes.data.map(user => user.profileId);
-                    const profilesRes = await userAxios.post('/api/protected/profiles/collection', {collection: profileIdCollection});
-                    const chatIds = searchRes.data.map(friend => friend.friends.find(friendObj => friendObj.friendId === JSON.parse(localStorage.getItem('staticUserInfo'))._id).chat)
-                    const chats = await userAxios.get('/api/protected/chats');
-                    const orderedChats = chatIds.map(id => chats.data.find(chat => chat._id === id).messages);
-                    setFriends(searchRes.data.map((user, i) => {
-                        delete user.friends
-                        return {
-                        ...user,
-                        profileUrl: profilesRes.data.find(profile => profile._id === user.profileId).imgUrl,
-                        chat: orderedChats[i],
-                        chatId: chatIds[i]
-                        }
-                    }))
-                } else {
-                    setFriends([])
-                }
-                setThinking(false)
-            } catch (err) {
-                console.log(err)
-            }
-        }
         fetchData()
     }, [])
 

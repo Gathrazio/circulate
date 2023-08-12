@@ -247,6 +247,10 @@
   background-color: rgb(198, 200, 201);
 }
 
+.bio-block-user-profile {
+  height: 36vh;
+}
+
 .loading-placeholder {
   height: 20vh;
   display: flex;
@@ -479,8 +483,16 @@
   width: 25%;
 }
 
+.profile-container {
+  display: flex;
+  align-items: center;
+}
+
 .chat-user-text {
-  width: 75%;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 5px;
 }
 
 .chat-content-wrapper {
@@ -559,5 +571,31 @@
 .show-status {
   font-size: 0.8rem;
   color: rgb(93, 93, 93);
+}
 
+.notif-block {
+  border: none;
+}
+
+.chat-user-wrapper {
+  height: 12vh;
+  background-color: blanchedalmond;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.image-name-wrapper {
+  height: 12vh;
+  display: flex;
+  align-items: center;
+}
+
+.notif-block {
+  padding: 5px;
+  height: 12vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
 }

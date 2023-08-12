@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import SearchedUser from './SearchedUser.jsx'
 import axios from 'axios'
+import SmartInterval from 'smartinterval';
 
 const userAxios = axios.create();
 
@@ -13,12 +14,14 @@ userAxios.interceptors.request.use(config => {
 export default function FriendSearch ({
     searchedUserDesignator,
     handleSearchChange,
-    searchBody
+    searchBody,
+    fetchData
 }) {
 
     const [userFluidInfo, setUserFluidInfo] = useState()
     useEffect(() => {
-        const fetchData = async () => {
+        const dataFetcher = new SmartInterval(fetchData, 5000);
+        const fetchFluidData = async () => {
             try {
                 const fluidUserRes = await userAxios.get('/api/protected/users');
                 setUserFluidInfo(fluidUserRes.data)
@@ -26,7 +29,11 @@ export default function FriendSearch ({
                 console.log(err)
             }
         }
-        fetchData()
+        fetchFluidData()
+        dataFetcher.start()
+        return () => {
+            dataFetcher.stop()
+        }
     }, [])
 
     return (

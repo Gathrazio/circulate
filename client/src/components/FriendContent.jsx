@@ -37,29 +37,28 @@ export default function FriendContent () {
         e.preventDefault()
     }
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                setThinking(true)
-                const searchRes = await userAxios.get(`/api/protected/users/friendsearchusers/?username=${searchBody}`)
-                if (searchRes.data.length != 0) {
-                    const bioIdCollection = searchRes.data.map(user => user.bioId);
-                    const profileIdCollection = searchRes.data.map(user => user.profileId);
-                    const biosRes = await userAxios.post('/api/protected/biographies/collection', {collection: bioIdCollection});
-                    const profilesRes = await userAxios.post('/api/protected/profiles/collection', {collection: profileIdCollection});
-                    setSearchedUsers(searchRes.data.map(user => ({
-                        ...user,
-                        biography: biosRes.data.find(bio => bio._id === user.bioId).body,
-                        profileUrl: profilesRes.data.find(profile => profile._id === user.profileId).imgUrl
-                    })))
-                } else {
-                    setSearchedUsers([])
-                }
-                setThinking(false)
-            } catch (err) {
-                console.log(err)
+    const fetchData = async () => {
+        try {
+            const searchRes = await userAxios.get(`/api/protected/users/friendsearchusers/?username=${searchBody}`)
+            if (searchRes.data.length != 0) {
+                const bioIdCollection = searchRes.data.map(user => user.bioId);
+                const profileIdCollection = searchRes.data.map(user => user.profileId);
+                const biosRes = await userAxios.post('/api/protected/biographies/collection', {collection: bioIdCollection});
+                const profilesRes = await userAxios.post('/api/protected/profiles/collection', {collection: profileIdCollection});
+                setSearchedUsers(searchRes.data.map(user => ({
+                    ...user,
+                    biography: biosRes.data.find(bio => bio._id === user.bioId).body,
+                    profileUrl: profilesRes.data.find(profile => profile._id === user.profileId).imgUrl
+                })))
+            } else {
+                setSearchedUsers([])
             }
+        } catch (err) {
+            console.log(err)
         }
+    }
+
+    useEffect(() => {
         fetchData()
     }, [searchBody])
 
@@ -103,6 +102,7 @@ export default function FriendContent () {
                         searchBody={searchBody}
                         searchedUsers={searchedUsers}
                         thinking={thinking}
+                        fetchData={fetchData}
                     />
                 </>
                 

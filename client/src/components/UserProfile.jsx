@@ -38,7 +38,7 @@ export default function UserProfile ({userInfo, updateToggleUtility}) {
                 </div>
                 <img className="profile-pic" src={profileDesignation(userInfo.profileUrl)} alt="" />
             </div>
-            <div className="bio-block">
+            <div className="bio-block bio-block-user-profile">
                 <div className='bio-text'>{bioDesignation(userInfo.biography)}</div>
             </div>
         </> 

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import FriendListPiece from './FriendListPiece.jsx'
 import loadingBalls from '../assets/loading_gif_cool.gif'
 import axios from 'axios'
+import SmartInterval from 'smartinterval';
 
 const userAxios = axios.create();
 
@@ -61,9 +62,13 @@ export default function MyFriends ({updateToggleUtility}) {
             } catch (err) {
                 console.log(err)
             }
-            
         }
+        const dataFetcher = new SmartInterval(fetchData, 5000)
+        dataFetcher.start()
         fetchData()
+        return () => {
+            dataFetcher.stop()
+        }
     }, [])
 
     return (

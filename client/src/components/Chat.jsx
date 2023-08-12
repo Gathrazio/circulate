@@ -18,8 +18,6 @@ export default function Chat ({updateToggleUtility, userInfo, updateWithNewMessa
 
     const [currentText, setCurrentText] = useState('');
 
-    console.log("userInfo", userInfo)
-
     const updateText = (e) => {
         const {value} = e.target;
         setCurrentText(value)
