@@ -29,7 +29,7 @@ export default function ProfileMain ({
             </div>
             <div className="profile-block">
                 <div className="username-button-block">
-                    <div className="username-block">
+                    <div className="username-block text-size">
                     @<span className="user-color text-size larger">{JSON.parse(localStorage.getItem('staticUserInfo')).username}</span>
                     </div>
                     <button className="profile-change-button text-size" onClick={editProfileToggleAction()}>
