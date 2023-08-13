@@ -1,5 +1,7 @@
 import { useState, useEffect, memo } from 'react'
 import defaultProfile from '../assets/default_profile.jpg'
+import { IconContext } from 'react-icons'
+import { AiOutlineRollback } from 'react-icons/ai'
 
 
 const UserProfile = memo(function UserProfile ({userInfo, updateToggleUtility}) {
@@ -26,7 +28,11 @@ const UserProfile = memo(function UserProfile ({userInfo, updateToggleUtility}) 
         <>
         <div className="view-reqs friend-bar">
                     <div className="go-back-friend" onClick={toggleAction()}>
-                        Go Back
+                        <IconContext.Provider value={{
+                            className: `nav-icons`
+                        }}>
+                            <AiOutlineRollback />
+                        </IconContext.Provider>
                     </div>
                     <div className="friend-profile-title">
                         User's Profile

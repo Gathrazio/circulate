@@ -7,7 +7,7 @@ export default function InboundReq (props) {
     return (
         <div className="inbound-req-wrapper">
             <div className="req-message">
-                From {sender.username}
+                From @<span className="user-color">{sender.username}</span>
             </div>
             <div className="req-buttons-block-inbound">
                 <button className="req-button-half" onClick={deleteAction()}>Decline</button>

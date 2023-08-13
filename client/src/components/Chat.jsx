@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import ChatMessage from './ChatMessage.jsx'
 import ScrollToBottom from './ScrollToBottom.jsx'
 import defaultProfile from '../assets/default_profile.jpg'
 import axios from 'axios'
+import { IconContext } from 'react-icons'
+import { AiOutlineRollback } from 'react-icons/ai'
 
 const userAxios = axios.create();
 
@@ -16,10 +18,13 @@ userAxios.interceptors.request.use(config => {
 export default function Chat ({updateToggleUtility, userInfo, updateWithNewMessage, updateMessageStatus}) {
     const updateToggleUtilityAction = () => () => updateToggleUtility(0);
 
-    const [currentText, setCurrentText] = useState('');
+    const invincibleText = useRef('');
+    const currentChatLength = useRef(userInfo.chat.length);
+    const [currentText, setCurrentText] = useState(invincibleText.current);
 
     const updateText = (e) => {
         const {value} = e.target;
+        invincibleText.current = value;
         setCurrentText(value)
     }
 
@@ -37,14 +42,26 @@ export default function Chat ({updateToggleUtility, userInfo, updateWithNewMessa
     }, [])
 
     useEffect(() => {
-        setCurrentText('')
+
+    }, [userInfo.chats])
+
+    useEffect(() => {
+        if (currentChatLength.current != userInfo.chat.length) {
+            currentChatLength.current = userInfo.chat.length;
+            invincibleText.current = '';
+            setCurrentText('')
+        }
     }, [userInfo])
 
     return (
         <div className="chat-wrapper">
             <div className="my-friends-bar chat-chat">
                 <div className="show-hide-friends chat-chat" onClick={updateToggleUtilityAction()}>
-                    Back
+                <IconContext.Provider value={{
+                        className: `nav-icons`
+                    }}>
+                        <AiOutlineRollback />
+                </IconContext.Provider>
                 </div>
                 <div className="my-friends-text chat-chat">
                 <div className="profile-search-img-container">
@@ -58,7 +75,7 @@ export default function Chat ({updateToggleUtility, userInfo, updateWithNewMessa
             <ScrollToBottom />
             </div>
             <form className="chat-bar" onSubmit={handleSubmit}>
-                <textarea className="chat-textarea" placeholder="Say something..." onChange={updateText} value={currentText} required/>
+                <textarea className="chat-textarea" placeholder="Say something..." onChange={updateText} value={invincibleText.current} required/>
                 <button className="send-chat-button">
                     Send
                 </button>

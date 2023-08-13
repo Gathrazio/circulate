@@ -225,9 +225,9 @@
 }
 
 .username-block {
-  margin: 10px;
-  margin-top: 5px;
   font-size: 1.2rem;
+  margin-top: -5px;
+  margin-bottom: 5px;
   color: var(--entryway-offwhite);
 }
 
@@ -238,8 +238,9 @@
 
 .bio-text {
   padding: 15px;
-  background-color: var(--bio-lightgrey);
   font-size: 1rem;
+  white-space: pre-line;
+  white-space: pre-wrap;
 }
 
 .bio-input {
@@ -288,6 +289,7 @@
 
 .req-message {
   margin-left: 20px;
+  margin-top: -6px;
 }
 
 .req-buttons-block {
@@ -304,12 +306,14 @@
   width: 100%;
   height: 100%;
   border: none;
+  font-size: 1rem;
   background-color: var(--entryway-bluegrey);
   border-left: 1px solid black;
 }
 
 .req-button-half {
   width: 50%;
+  font-size: 1rem;
   background-color: var(--entryway-bluegrey);
   height: 100%;
   border: none;
@@ -353,7 +357,7 @@
 }
 
 .show-hide-friends {
-  width: 33.3%;
+  width: 25%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -361,7 +365,7 @@
 }
 
 .my-friends-text {
-  width: 66.6%;
+  width: 75%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -420,11 +424,11 @@
 }
 
 .friend-profile-title {
-  width: 66.6%;
+  width: 75%;
 }
 
 .go-back-friend {
-  width: 33.3%;
+  width: 25%;
   height: 8vh;
   display: flex;
   justify-content: center;
@@ -569,9 +573,9 @@
 
 .chat-message-body {
   background-color: white;
-  padding: 5px;
+  padding: 8px;
   border-radius: 8px;
-  margin: 10px;
+  margin: 5px;
   margin-bottom: 0px;
   max-width: 70%;
 }

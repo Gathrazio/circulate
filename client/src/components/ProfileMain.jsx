@@ -25,7 +25,7 @@ export default function ProfileMain ({
     return (
         <>
             <div className="view-reqs" onClick={toggleAction()}>
-                View active inbound/outbound requests
+                View Active Friend Requests
             </div>
             <div className="profile-block">
                 <div className="username-block">

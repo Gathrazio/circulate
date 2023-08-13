@@ -1,5 +1,5 @@
 import { IconContext } from 'react-icons';
-import { BsFillPersonFill, BsPeopleFill, BsFillChatLeftDotsFill, BsFillChatDotsFill } from 'react-icons/bs'
+import { BsFillPersonFill, BsPeopleFill, BsFillChatDotsFill } from 'react-icons/bs'
 import { useState } from 'react'
 import {BiLogOut} from 'react-icons/bi'
 

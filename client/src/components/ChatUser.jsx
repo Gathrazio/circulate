@@ -12,7 +12,7 @@ const ChatUser = memo(function ChatUser ({user, friendIndex, updateToggleUtility
                     </div>
                     @<span className="user-color">{user.username}</span>
                 </div>
-                <div className="notif-block">
+                <div className={`notif-block${totalUnread === 0 ? ' surprise' : ''}`}>
                     {totalUnread === 0 ? 'Nothing new...' : `(${totalUnread}) unread message${totalUnread === 1 ? '' : 's'}!`}
                 </div>
         </div>

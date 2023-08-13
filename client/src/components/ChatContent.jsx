@@ -22,7 +22,7 @@ export default function ChatContent () {
     }
 
     useEffect(() => {
-        const dataFetcher = new SmartInterval(fetchData, 5000);
+        const dataFetcher = new SmartInterval(fetchData, 10000);
         dataFetcher.start()
         return () => {
             dataFetcher.stop()

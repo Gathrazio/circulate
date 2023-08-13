@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import InboundReq from './InboundReq.jsx'
 import OutboundReq from './OutboundReq.jsx'
+import { IconContext } from 'react-icons';
+import { AiOutlineRollback } from 'react-icons/ai'
 
 const userAxios = axios.create();
 
@@ -120,7 +122,11 @@ export default function ViewReqs ({updateToggle}) {
     return (
         <div className="reqs-wrapper">
             <div className="go-back" onClick={action()}>
-                Go back
+                <IconContext.Provider value={{
+                        className: `nav-icons`
+                    }}>
+                        <AiOutlineRollback />
+                </IconContext.Provider>
             </div>
             <div className="inbound">
                 Inbound Friend Requests
