@@ -71,7 +71,7 @@ export default function FriendContent () {
             )
         } else if (searchedUsers.length === 0) {
             return (
-                <div className="loading-placeholder">
+                <div className="loading-placeholder-text text-size">
                     No Results...
                 </div>
             )
