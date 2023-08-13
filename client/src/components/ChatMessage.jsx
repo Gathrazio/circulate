@@ -13,7 +13,7 @@ export default function ChatMessage ({body, direction, status}) {
             >
                 {body}
             </div>
-            { showStatus && <div className="show-status">{status}</div> }
+            { showStatus && <div className="show-status slogan-size">{status}</div> }
         </div>
     )
 }

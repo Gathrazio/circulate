@@ -17,15 +17,20 @@
   --bio-darkgrey: rgba(64, 68, 73, 0.823);
   --bio-lightgrey: rgb(160, 166, 170);
   --exit-orange: rgb(238, 169, 78);
+  --exit-deep-orange: rgb(255, 145, 0);
   --inbound-blue: rgb(158, 184, 208);
   --req-grey: rgb(198, 200, 201);
   --req-emerald: rgb(107, 164, 151);
+  --clear-chat-red: rgb(174, 69, 69);
+  --clear-chat-bright-red: rgb(186, 33, 33);
   --user-color: rgb(222, 237, 21);
   --my-chat-color: rgb(74, 233, 180);
   --friend-chat-color: rgb(108, 205, 234);
   --purple-grey: rgb(185, 177, 203);
   --muted-tangerine: rgb(107, 172, 168);
   --space-grey: rgb(147, 166, 194);
+  --dark-bluegrey: rgb(121, 147, 160);
+  --bio-blue: rgb(54, 100, 126);
 }
 
 .titlebar-wrapper {
@@ -91,6 +96,16 @@
   border-radius: 5px;
   border: none;
   transition: 0.1s;
+}
+
+.category-select {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.entry-button:hover, .member:hover, .profile-change-button:hover, .edit-bio:hover, .view-reqs:hover, .go-back:hover, .req-button:hover, .profile-select:hover, .chat-select:hover, .friend-select:hover, .req-button-half:hover, .chat-user-wrapper:hover, .show-hide-friends:hover, .send-chat-button:hover, .clear-chat-button:hover, .logout:hover, .view-profile-button:hover, .send-request-button:hover {
+  cursor: pointer;
 }
 
 .login-err {
@@ -447,6 +462,10 @@
   align-items: center;
 }
 
+.friend-profile-title:hover {
+  cursor: auto;
+}
+
 .friend-profile-title {
   width: 75%;
 }
@@ -613,7 +632,7 @@
 
 .clear-chat-button {
   width: 15%;
-  background-color: rgb(183, 149, 149);
+  background-color: var(--clear-chat-red);
   height: 12vh;
   padding: 5px;
   border: none;
@@ -693,7 +712,7 @@
 }
 
 .surprise {
-  color: rgb(0, 255, 55);
+  color: rgb(88, 255, 238);
 }
 
 .text-size {
@@ -766,9 +785,44 @@
   }
 }
 
+/* .entry-button:hover, .member:hover, .profile-change-button:hover, .edit-bio:hover, .view-reqs:hover, .go-back:hover, .req-button:hover, .profile-select:hover, .chat-select:hover, .friend-select:hover, .req-button-half:hover, .chat-user-wrapper:hover, .show-hide-friends:hover, .send-chat-button:hover, .clear-chat-button:hover, .logout:hover, .view-profile-button:hover, .send-request-button:hover {
+  cursor: pointer;
+}*/
+
 @media only screen and (min-width: 600px) {
   .title-size {
     font-size: 3.5rem;
+  }
+
+  .entry-button:hover, .member:hover, .profile-change-button:hover, .req-button-half:hover, .req-button:hover, .send-chat-button:hover, .view-profile-button:hover, .send-request-button:hover {
+    background-color: var(--dark-bluegrey);
+    transition: 0.1s;
+  }
+
+  .logout:hover * {
+    color: var(--exit-deep-orange);
+    transition: 0.1s;
+  }
+
+  .profile-select:hover *, .chat-select:hover *, .friend-select:hover * {
+    color: rgb(133, 178, 207);
+  }
+
+  .profile-select:hover * .highlighted {
+    color: var(--entryway-offwhite);
+  }
+
+  .edit-bio:hover, .chat-user-wrapper:hover {
+    background-color: var(--bio-blue);
+    transition: 0.1s;
+  }
+
+  .show-hide-friends:hover {
+    background-color: rgb(49, 114, 99);
+  }
+
+  .clear-chat-button:hover {
+    background-color: var(--clear-chat-bright-red);
   }
   
   .slogan-size {

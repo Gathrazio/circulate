@@ -28,7 +28,7 @@ export default function Navbar ({updateToggle, updateToken}) {
     return (
         <div className="navbar-wrapper">
             <div className="logout" onClick={handleLogout}>
-                <div className="select-text" onClick={action(0)}>
+                <div className="select-text category-select" onClick={action(0)}>
                     <IconContext.Provider value={{
                         className: `nav-icons colored-icon`
                     }}>
@@ -37,7 +37,7 @@ export default function Navbar ({updateToggle, updateToken}) {
                 </div>  
             </div>
             <div className="profile-select">
-            <div className="select-text" onClick={action(0)}>
+            <div className="select-text category-select" onClick={action(0)}>
                     <IconContext.Provider value={{
                         className: `nav-icons${highlightToggle[0] ? ' highlighted' : ''}`
                     }}>
@@ -46,7 +46,7 @@ export default function Navbar ({updateToggle, updateToken}) {
                 </div>
             </div>
             <div className="chat-select" onClick={action(1)}>
-                <div className="select-text">
+                <div className="select-text category-select">
                     <IconContext.Provider value={{
                         className: `nav-icons${highlightToggle[1] ? ' highlighted' : ''}`
                     }}>
@@ -55,7 +55,7 @@ export default function Navbar ({updateToggle, updateToken}) {
                 </div>
             </div>
             <div className="friend-select" onClick={action(2)}>
-                <div className="select-text">
+                <div className="select-text category-select">
                     <IconContext.Provider value={{
                         className: `nav-icons${highlightToggle[2] ? ' highlighted' : ''}`
                     }}>
