@@ -552,6 +552,7 @@
 
 .chat-content-wrapper {
   overflow-y: scroll;
+  height: 80vh;
 }
 
 .chat-wrapper {

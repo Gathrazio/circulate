@@ -108,7 +108,8 @@ export default function ChatContent () {
         } else {
             return(
                 <>
-                    {friends.map((user, i) => <ChatUser key={user._id} user={user} friendIndex={i} updateToggleUtility={updateToggleUtility}/>)}
+                    <div className="chat-content-wrapper">{friends.map((user, i) => <ChatUser key={user._id} user={user} friendIndex={i} updateToggleUtility={updateToggleUtility}/>)}</div>
+                    
                 </>
                 
             );
@@ -130,8 +131,9 @@ export default function ChatContent () {
     }
 
     return (
-        <div className="chat-content-wrapper">
+        <>
             {setDisplay(displayToggleUtility)}
-        </div>
+        </>
+            
     )
 }

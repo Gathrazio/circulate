@@ -93,7 +93,7 @@ export default function FriendContent () {
     function setDisplay (displayToggleUtility) {
         if (displayToggleUtility[0] === 0) {
             return (
-                <>
+                <div className="friend-content-wrapper content-wrapper">
                     <MyFriends updateToggleUtility={updateToggleUtility}/>
                     <FriendSearch
                         updateToggleUtility={updateToggleUtility}
@@ -105,7 +105,7 @@ export default function FriendContent () {
                         thinking={thinking}
                         fetchData={fetchData}
                     />
-                </>
+                </div>
                 
             )
         } else if (displayToggleUtility[0] === 1) {
@@ -114,8 +114,8 @@ export default function FriendContent () {
     }
 
     return (
-        <div className="friend-content-wrapper content-wrapper">
+        <>
             {setDisplay(displayToggleUtility)}
-        </div>
+        </>
     )
 }
