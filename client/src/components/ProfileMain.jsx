@@ -1,9 +1,4 @@
-import { useEffect, useState } from 'react'
 import axios from 'axios'
-import loading from '../assets/loading.gif'
-import defaultProfile from '../assets/default_profile.jpg'
-import {IconContext} from 'react-icons'
-import {BiLogOut} from 'react-icons/bi'
 
 const userAxios = axios.create();
 
@@ -34,7 +29,7 @@ export default function ProfileMain ({
             </div>
             <div className="profile-block">
                 <div className="username-block">
-                    @{JSON.parse(localStorage.getItem('staticUserInfo')).username}
+                    @<span className="user-color">{JSON.parse(localStorage.getItem('staticUserInfo')).username}</span>
                 </div>
                 {editProfileToggle ?
                 <input type="text" className="profile-input" value={profileUrl || ''} onChange={profileUrlChange}/>

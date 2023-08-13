@@ -123,11 +123,11 @@ export default function ViewReqs ({updateToggle}) {
                 Go back
             </div>
             <div className="inbound">
-                Inbound Requests
+                Inbound Friend Requests
             </div>
             {inboundDesignator()}
             <div className="outbound">
-                Outbound Requests
+                Outbound Friend Requests
             </div>
             {outboundDesignator()}
         </div>

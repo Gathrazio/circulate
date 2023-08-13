@@ -30,6 +30,7 @@ export default function FriendContent () {
 
     const handleSearchChange = (e) => {
         const {value} = e.target;
+        console.log('this value:', value)
         setSearchBody(value)
     }
     
@@ -39,6 +40,7 @@ export default function FriendContent () {
 
     const fetchData = async () => {
         try {
+            console.log('current search body', searchBody)
             const searchRes = await userAxios.get(`/api/protected/users/friendsearchusers/?username=${searchBody}`)
             if (searchRes.data.length != 0) {
                 const bioIdCollection = searchRes.data.map(user => user.bioId);
@@ -80,7 +82,6 @@ export default function FriendContent () {
             return(
                 <>
                 {searchedUsers.map(user => <SearchedUser key={user._id} user={user} updateToggleUtility={updateToggleUtility} userFluidInfo={userFluidInfo}/>)}
-                <div className="spacer-bar"></div>
                 </>
                 
             );

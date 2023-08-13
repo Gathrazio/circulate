@@ -109,7 +109,6 @@ export default function ChatContent () {
             return(
                 <>
                     {friends.map((user, i) => <ChatUser key={user._id} user={user} friendIndex={i} updateToggleUtility={updateToggleUtility}/>)}
-                    <div className="spacer-bar"></div>
                 </>
                 
             );

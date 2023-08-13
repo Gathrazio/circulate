@@ -2,10 +2,26 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'IBM Plex Mono';
+  font-family: 'Barlow';
 }
 
 /* <Entry /> */
+
+:root {
+  --title-grey: rgba(98, 116, 135, 0.823);
+  --entryway-grey: rgba(60, 71, 82, 0.823);
+  --profile-mattegrey: rgba(68, 84, 101, 0.823);
+  --entryway-lightgrey: rgba(88, 105, 123, 0.823);
+  --entryway-offwhite: rgba(243, 243, 243, 0.817);
+  --entryway-bluegrey: rgb(184, 203, 212);
+  --bio-darkgrey: rgba(64, 68, 73, 0.823);
+  --bio-lightgrey: rgb(160, 166, 170);
+  --exit-orange: rgb(238, 169, 78);
+  --inbound-blue: rgb(158, 184, 208);
+  --req-grey: rgb(198, 200, 201);
+  --req-emerald: rgb(107, 164, 151);
+  --user-color: rgb(222, 237, 21);
+}
 
 .titlebar-wrapper {
   height: 20vh;
@@ -15,7 +31,7 @@
   align-items: center;
   font-size: 2.5rem;
   color: white;
-  background-color: rgba(98, 116, 135, 0.823);
+  background-color: var(--title-grey);
 }
 
 .title {
@@ -30,7 +46,7 @@
 
 .form-content-wrapper {
   display: flex;
-  background-color: rgba(60, 71, 82, 0.823);
+  background-color: var(--entryway-grey);
   height: 80vh;
   flex-direction: column;
   justify-content: center;
@@ -40,11 +56,9 @@
 .entry-form {
   padding: 20px;
   margin: 5px;
-  margin-bottom: 30px;
   display: flex;
   flex-direction: column;
   width: 300px;
-  border: 1px solid rgb(145, 145, 145);
   border-radius: 8px;
 }
 
@@ -56,6 +70,14 @@
   border-radius: 8px;
   transition: 0.1s;
   margin: 5px;
+}
+
+.entry-input {
+  background-color: var(--entryway-offwhite);
+}
+
+.entry-button, .member {
+  background-color: var(--entryway-bluegrey);
 }
 
 .member {
@@ -81,7 +103,7 @@
   align-items: center;
   font-size: 1.5rem;
   color: white;
-  background-color: rgba(98, 116, 135, 0.823);
+  background-color: var(--title-grey);
 }
 
 .small-title {
@@ -89,16 +111,16 @@
 }
 
 .nav-icons {
-  color: black;
+  color: rgb(0, 0, 0);
   font-size: 2.5rem;
 }
 
 .highlighted {
-  color: white;
+  color: var(--entryway-offwhite);
 }
 
 .colored-icon {
-  color: rgb(29, 241, 188);
+  color: var(--exit-orange);
 }
 
 .navbar-wrapper {
@@ -112,19 +134,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(63, 93, 124, 0.823);
+  background-color: var(--entryway-grey);
 }
 
 .conditional-content-wrapper {
   height: 80vh;
-  background-color: rgba(60, 71, 82, 0.823);
+  background-color: var(--profile-mattegrey);
 }
 
 /* <ProfileContent /> */
 
 .view-reqs {
   height: 8vh;
-  background-color: rgb(198, 200, 201);
+  /* background-color: rgba(63, 93, 124, 0.823); */
+  background-color: var(--req-grey);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -171,18 +194,10 @@
   margin-left: -5px;
 }
 
-.logout-wrapper {
-  height: 8vh;
-  background-color: crimson;
-  width: 33.3%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .edit-bio {
   height: 8vh;
-  background-color: rgb(54, 75, 93);
+  background-color: var(--entryway-lightgrey);
+  /* background-color: rgb(70, 92, 112); */
   color: white;
   display: flex;
   justify-content: center;
@@ -191,21 +206,29 @@
 
 .profile-pic {
   border-radius: 50px;
-  border: 2px solid white;
+  border: 2px solid var(--entryway-offwhite);
   height: 140px;
 }
 
 .profile-change-button {
   border: none;
-  border-radius: 8px;
-  font-size: 0.8rem;
-  padding: 5px;
+  background-color: var(--entryway-bluegrey);
+  border-radius: 5px;
+  font-size: 1rem;
+  padding: 8px;
   margin: 10px;
+}
+
+.user-color {
+  color: var(--user-color);
+  font-size: 1.8rem;
 }
 
 .username-block {
   margin: 10px;
-  color: white;
+  margin-top: 5px;
+  font-size: 1.2rem;
+  color: var(--entryway-offwhite);
 }
 
 .bio-title {
@@ -215,26 +238,28 @@
 
 .bio-text {
   padding: 15px;
-  font-size: 0.8rem;
+  background-color: var(--bio-lightgrey);
+  font-size: 1rem;
 }
 
 .bio-input {
   height: 28vh;
   width: 100%;
-  background-color: rgb(65, 71, 71);
-  color: rgb(218, 218, 218);
+  background-color: var(--bio-darkgrey);
+  color: var(--entryway-offwhite);
   border: none;
 }
 
 .profile-block {
-  background-color: rgba(88, 135, 182, 0.823);
+  background-color: var(--profile-mattegrey);
 }
 
 .inbound, .outbound {
   height: 8vh;
-  background-color: rgb(168, 209, 245);
+  background-color: var(--inbound-blue);
   display: flex;
   border-top: 1px solid black;
+  border-bottom: 1px solid black;
   justify-content: center;
   align-items: center;
 }
@@ -244,6 +269,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 1vh;
   background-color: rgb(198, 200, 201);
 }
 
@@ -267,7 +293,6 @@
 .req-buttons-block {
   height: 100%;
   width: 50%;
-  border-right: 1px solid black;
 }
 
 .req-buttons-block-inbound {
@@ -279,11 +304,13 @@
   width: 100%;
   height: 100%;
   border: none;
+  background-color: var(--entryway-bluegrey);
   border-left: 1px solid black;
 }
 
 .req-button-half {
   width: 50%;
+  background-color: var(--entryway-bluegrey);
   height: 100%;
   border: none;
   border-left: 1px solid black;
@@ -291,7 +318,6 @@
 
 .accept {
   border-left: 1px solid black;
-  border-right: 1px solid black;
 }
 
 .reqs-wrapper {
@@ -300,13 +326,16 @@
 }
 
 .outbound-req-wrapper, .inbound-req-wrapper {
-  height: 12vh;
-  background-color: rgb(131, 196, 182);
+  height: 8vh;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  margin: 1vh;
+  background-color: var(--req-emerald);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid black;
-  border-left: 1px solid black;
 }
 
 /* Friends */
@@ -427,14 +456,14 @@
 }
 
 .spacer-bar {
-  height: 8vh;
+  height: 4vh;
   background-color: rgba(60, 71, 82, 0.823);
 }
 
 .profile-search-img-container {
   height: 70px;
   border-radius: 10px;
-  border: 1px solid white;
+  border: 1px solid var(--entryway-offwhite);
   margin-left: 1vh;
   margin-right: 1vh;
   display: flex;
@@ -573,13 +602,12 @@
   color: rgb(93, 93, 93);
 }
 
-.notif-block {
-  border: none;
-}
-
 .chat-user-wrapper {
   height: 12vh;
-  background-color: blanchedalmond;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 1vh;
+  background-color: rgb(110, 153, 213);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -588,11 +616,13 @@
 .image-name-wrapper {
   height: 12vh;
   display: flex;
+  font-size: 1.2rem;
   align-items: center;
 }
 
 .notif-block {
-  padding: 5px;
+  border: none;
+  padding: 20px;
   height: 12vh;
   display: flex;
   justify-content: center;

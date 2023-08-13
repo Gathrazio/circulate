@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react'
-import SearchedUser from './SearchedUser.jsx'
+import { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import SmartInterval from 'smartinterval';
 
@@ -18,9 +17,15 @@ export default function FriendSearch ({
     fetchData
 }) {
 
-    const [userFluidInfo, setUserFluidInfo] = useState()
     useEffect(() => {
         const dataFetcher = new SmartInterval(fetchData, 5000);
+        dataFetcher.start()
+        return () => dataFetcher.stop();
+    }, [searchBody])
+    
+
+    const [userFluidInfo, setUserFluidInfo] = useState()
+    useEffect(() => {
         const fetchFluidData = async () => {
             try {
                 const fluidUserRes = await userAxios.get('/api/protected/users');
@@ -30,10 +35,6 @@ export default function FriendSearch ({
             }
         }
         fetchFluidData()
-        dataFetcher.start()
-        return () => {
-            dataFetcher.stop()
-        }
     }, [])
 
     return (

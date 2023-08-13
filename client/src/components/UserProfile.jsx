@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, memo } from 'react'
 import defaultProfile from '../assets/default_profile.jpg'
 
 
-export default function UserProfile ({userInfo, updateToggleUtility}) {
+const UserProfile = memo(function UserProfile ({userInfo, updateToggleUtility}) {
     const toggleAction = () => () => updateToggleUtility(0);
 
     const profileDesignation = (profileUrl) => {
@@ -43,4 +43,6 @@ export default function UserProfile ({userInfo, updateToggleUtility}) {
             </div>
         </> 
     )
-}
+})
+
+export default UserProfile;
