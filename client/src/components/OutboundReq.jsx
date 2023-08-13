@@ -5,11 +5,11 @@ export default function OutboundReq (props) {
     const deleteAction = () => () => removeRequest(request, "outbound");
     return (
         <div className="outbound-req-wrapper">
-            <div className="req-message">
-                To @<span className="user-color">{receiver.username}</span>
+            <div className="req-message text-size">
+                To @<span className="user-color text-size">{receiver.username}</span>
             </div>
             <div className="req-buttons-block">
-                <button className="req-button" onClick={deleteAction()}>Delete</button>
+                <button className="req-button text-size" onClick={deleteAction()}>Delete</button>
             </div>
         </div>
     )

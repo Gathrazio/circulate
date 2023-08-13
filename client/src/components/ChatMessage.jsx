@@ -7,7 +7,7 @@ export default function ChatMessage ({body, direction, status}) {
     return (
         <div className={`chat-message-wrapper ${direction}`}>
             <div
-                className="chat-message-body"
+                className="chat-message-body text-size"
                 onMouseEnter={() => setShowStatus(true)}
                 onMouseLeave={() => setShowStatus(false)}
             >

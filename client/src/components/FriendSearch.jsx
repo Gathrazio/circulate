@@ -40,7 +40,7 @@ export default function FriendSearch ({
     return (
         <div className="friend-search-block">
             <div className="searchbar">
-                <input type="text" onChange={handleSearchChange} value={searchBody} className="search-input" placeholder="Search users"/>
+                <input type="text" onChange={handleSearchChange} value={searchBody} className="search-input text-size" placeholder="Search users"/>
             </div>
             {searchedUserDesignator(userFluidInfo)}
             

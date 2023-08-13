@@ -59,7 +59,7 @@ export default function Entry ({updateToken}) {
             <>
             <form name="entry-form" className="entry-form" onSubmit={handleSignInSubmit}>
                 <input
-                    className="entry-input"
+                    className="entry-input text-size"
                     type="text"
                     name="username"
                     value={inputInfo.username}
@@ -68,7 +68,7 @@ export default function Entry ({updateToken}) {
                     required
                 />
                 <input
-                    className="entry-input"
+                    className="entry-input text-size"
                     type="password"
                     name="password"
                     value={inputInfo.password}
@@ -76,17 +76,17 @@ export default function Entry ({updateToken}) {
                     onChange={handleChange}
                     required
                 />
-                <button className="entry-button">Sign In</button>
+                <button className="entry-button text-size">Sign In</button>
         </form>
         {loginErr && <div className="login-err">{loginErr} Please try again.</div>}
         
-        <button className="member" onClick={() => setFormToggle(prev => !prev)}>Not a member?</button>
+        <button className="member slogan-size" onClick={() => setFormToggle(prev => !prev)}>Not a member?</button>
         </>
         :
         <>
         <form name="entry-form" className="entry-form" onSubmit={handleCreateAccountSubmit}>
             <input
-                className="entry-input"
+                className="entry-input text-size"
                 type="text"
                 name="username"
                 value={inputInfo.username}
@@ -95,7 +95,7 @@ export default function Entry ({updateToken}) {
                 required
             />
             <input
-                className="entry-input"
+                className="entry-input text-size"
                 type="password"
                 name="password"
                 value={inputInfo.password}
@@ -103,10 +103,10 @@ export default function Entry ({updateToken}) {
                 onChange={handleChange}
                 required
             />
-            <button className="entry-button">Create Account</button>
+            <button className="entry-button text-size">Create Account</button>
         </form>
         {signupErr && <div className="login-err">{signupErr} Please try again.</div>}
-        <button className="member" onClick={() => setFormToggle(prev => !prev)}>Already a member?</button>
+        <button className="member slogan-size" onClick={() => setFormToggle(prev => !prev)}>Already a member?</button>
         </>
         }
         </div>

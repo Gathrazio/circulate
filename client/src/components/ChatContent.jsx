@@ -101,7 +101,7 @@ export default function ChatContent () {
             )
         } else if (friends.length === 0) {
             return (
-                <div className="loading-placeholder">
+                <div className="loading-placeholder-text text-size">
                     No friends to chat with...
                 </div>
             )

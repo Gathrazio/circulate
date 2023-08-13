@@ -52,13 +52,13 @@ export default function ViewReqs ({updateToggle}) {
     const inboundDesignator = () => {
         if (inboundReqInfos === null) {
             return (
-                <div className="loading-placeholder">
+                <div className="loading-placeholder-text text-size">
                     Loading...
                 </div>
             )
         } else if (inboundReqInfos.length === 0) {
             return (
-                <div className="loading-placeholder">
+                <div className="loading-placeholder-text text-size">
                     You have no inbound requests.
                 </div>
             )
@@ -71,13 +71,13 @@ export default function ViewReqs ({updateToggle}) {
     const outboundDesignator = () => {
         if (outboundReqInfos === null) {
             return (
-                <div className="loading-placeholder">
+                <div className="loading-placeholder-text text-size">
                     Loading...
                 </div>
             )
         } else if (outboundReqInfos.length === 0) {
             return (
-                <div className="loading-placeholder">
+                <div className="loading-placeholder-text text-size">
                     You have no outbound requests.
                 </div>
             )
@@ -128,11 +128,11 @@ export default function ViewReqs ({updateToggle}) {
                         <AiOutlineRollback />
                 </IconContext.Provider>
             </div>
-            <div className="inbound">
+            <div className="inbound text-size-larger">
                 Inbound Friend Requests
             </div>
             {inboundDesignator()}
-            <div className="outbound">
+            <div className="outbound text-size-larger">
                 Outbound Friend Requests
             </div>
             {outboundDesignator()}

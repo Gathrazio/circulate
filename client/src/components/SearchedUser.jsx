@@ -47,17 +47,17 @@ export default function SearchedUser ({user, updateToggleUtility, userFluidInfo}
     
     return (
         <div className="searched-user-wrapper">
-            <div className="searched-user-text">
+            <div className="searched-user-text text-size">
                 <div className="profile-search-img-container">
                     <img src={user.profileUrl || defaultProfile} alt="" className="pic-blurb" />
                 </div>
-                @<span className="user-color">{user.username}</span>
+                @<span className="user-color text-size">{user.username}</span>
             </div>
-            <div className="searched-user-button-block">
-                <button className="view-profile-button" onClick={updateToggleUtilityAction()}>
+            <div className="searched-user-button-block text-size">
+                <button className="view-profile-button text-size" onClick={updateToggleUtilityAction()}>
                     View Profile
                 </button>
-                <button className={`send-request-button${reqButtonText === "Request Sent" || reqButtonText === "Pending Your Response" ? ' no-click pending' : '' }`} onClick={handleRequestClick}>
+                <button className={`send-request-button text-size${reqButtonText === "Request Sent" || reqButtonText === "Pending Your Response" ? ' no-click pending' : '' }`} onClick={handleRequestClick}>
                     {reqButtonText}
                 </button>
             </div>

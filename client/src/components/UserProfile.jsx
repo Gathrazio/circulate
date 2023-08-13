@@ -34,18 +34,21 @@ const UserProfile = memo(function UserProfile ({userInfo, updateToggleUtility}) 
                             <AiOutlineRollback />
                         </IconContext.Provider>
                     </div>
-                    <div className="friend-profile-title">
+                    <div className="friend-profile-title text-size-larger">
                         User's Profile
                     </div>
             </div>
             <div className="profile-block friend-area">
-                <div className="username-block">
-                    @<span className="user-color larger">{userInfo.username}</span>
+                <div className="username-button-block">
+                    <div className="username-block-margin username-block">
+                    @<span className="user-color text-size">{userInfo.username}</span>
+                    </div>
                 </div>
+                
                 <img className="profile-pic" src={profileDesignation(userInfo.profileUrl)} alt="" />
             </div>
             <div className="bio-block bio-block-user-profile">
-                <div className='bio-text'>{bioDesignation(userInfo.biography)}</div>
+                <div className='bio-text text-size'>{bioDesignation(userInfo.biography)}</div>
             </div>
         </> 
     )

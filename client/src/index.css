@@ -24,7 +24,7 @@
   --my-chat-color: rgb(74, 233, 180);
   --friend-chat-color: rgb(108, 205, 234);
   --purple-grey: rgb(185, 177, 203);
-  --muted-tangerine: rgb(163, 129, 105);
+  --muted-tangerine: rgb(107, 172, 168);
   --space-grey: rgb(147, 166, 194);
 }
 
@@ -34,7 +34,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 2.5rem;
   color: white;
   background-color: var(--title-grey);
 }
@@ -45,8 +44,11 @@
 }
 
 .slogan {
+  font-family: 'Julius Sans One';
+}
+
+.slogan-size {
   font-size: 0.8rem;
-  font-family: 'Julius Sans One'
 }
 
 .form-content-wrapper {
@@ -69,7 +71,6 @@
 
 .entry-input, .entry-button {
   padding: 15px;
-  font-size: 1rem;
   font-weight: 400;
   border: none;
   border-radius: 8px;
@@ -99,6 +100,10 @@
   font-size: 0.8rem;
 }
 
+.title-size {
+  font-size: 2.5rem;
+}
+
 /* Navpage */
 
 .small-titlebar-wrapper {
@@ -106,13 +111,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.5rem;
   color: white;
   background-color: var(--title-grey);
 }
 
 .small-title {
   font-family: 'IBM Plex Mono';
+}
+
+.small-title-size {
+  font-size: 1.5rem;
 }
 
 .nav-icons {
@@ -175,10 +183,10 @@
 }
 
 .profile-input {
-  padding: 5px;
+  padding: 10px;
   border-radius: 8px;
   border: none;
-  width: 90%;
+  width: 50%;
 }
 
 .loading-phase {
@@ -209,41 +217,42 @@
   align-items: center;
 }
 
+.username-button-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .profile-pic {
-  border-radius: 50px;
+  border-radius: 40px;
+  margin-bottom: 5px;
   border: 2px solid var(--entryway-offwhite);
-  height: 140px;
+  height: 150px;
 }
 
 .profile-change-button {
   border: none;
   background-color: var(--entryway-bluegrey);
   border-radius: 5px;
-  font-size: 1rem;
   padding: 8px;
-  margin: 10px;
+  margin: 8px;
+  margin-top: 0px;
+  margin-left: 0px;
 }
 
 .user-color {
   color: var(--user-color);
-  font-size: 1rem;
 }
 
 .username-block {
   font-size: 1.2rem;
-  margin-top: -5px;
   margin-bottom: 5px;
   color: var(--entryway-offwhite);
 }
 
-.bio-title {
-  margin: 5px;
-  font-size: 1rem;
-}
-
 .bio-text {
   padding: 15px;
-  font-size: 1rem;
   white-space: pre-line;
   white-space: pre-wrap;
 }
@@ -287,7 +296,16 @@
   height: 20vh;
   display: flex;
   justify-content: center;
-  color: white;
+  color: var(--entryway-offwhite);
+  padding: 10px;
+  align-items: center;
+}
+
+.loading-placeholder-text {
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  color: var(--entryway-offwhite);
   padding: 10px;
   align-items: center;
 }
@@ -311,14 +329,12 @@
   width: 100%;
   height: 100%;
   border: none;
-  font-size: 1rem;
   background-color: var(--entryway-bluegrey);
   border-left: 1px solid black;
 }
 
 .req-button-half {
   width: 50%;
-  font-size: 1rem;
   background-color: var(--entryway-bluegrey);
   height: 100%;
   border: none;
@@ -372,7 +388,6 @@
 
 .my-friends-text {
   width: 75%;
-  font-size: 1.3rem;
   height: 100%;
   display: flex;
   align-items: center;
@@ -454,10 +469,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.larger {
-  font-size: 1.3rem;
 }
 
 .searched-user-text {
@@ -594,6 +605,7 @@
 
 .send-chat-button {
   width: 29.41%;
+  padding: 5px;
   background-color: var(--entryway-bluegrey);
   height: 12vh;
   border: none;
@@ -603,6 +615,7 @@
   width: 15%;
   background-color: rgb(183, 149, 149);
   height: 12vh;
+  padding: 5px;
   border: none;
 }
 
@@ -681,4 +694,139 @@
 
 .surprise {
   color: rgb(0, 255, 55);
+}
+
+.text-size {
+  font-size: 1rem;
+}
+
+.text-size-larger {
+  font-size: 1.3rem;
+}
+
+@media only screen and (min-width: 390px) {
+  .profile-pic {
+    height: 170px;
+  }
+}
+
+@media only screen and (min-width: 400px) {
+  .profile-pic {
+    height: 190px;
+  }
+  .loading-balls {
+    height: 130px;
+  }
+}
+
+@media only screen and (min-width: 465px) {
+  .text-size {
+    font-size: 1.2rem;
+  }
+  
+  .text-size-larger {
+    font-size: 1.4rem;
+  }
+
+  .profile-pic {
+    height: 220px;
+  }
+
+  .loading-balls {
+    height: 150px;
+  }
+
+  @media only screen and (max-height: 1000px) {
+    .profile-block {
+      flex-direction: row;
+    }
+    .profile-pic {
+      height: 200px;
+    }
+    .username-block-margin {
+      margin-right: 20px;
+    }
+  }
+}
+
+@media only screen and (min-height: 750px) {
+  .nav-icons {
+    font-size: 3.5rem;
+  }
+}
+
+@media only screen and (min-height: 860px) {
+  .profile-search-img-container {
+    height: 100px;
+    width: 100px;
+  }
+
+  .pic-blurb {
+    height: 100px;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .title-size {
+    font-size: 3.5rem;
+  }
+  
+  .slogan-size {
+    font-size: 1.1rem;
+  }
+  .small-title-size {
+    font-size: 2rem;
+  }
+  .entry-form {
+    width: 400px;
+  }
+  .text-size {
+    font-size: 1.5rem;
+  }
+  
+  .text-size-larger {
+    font-size: 1.8rem;
+  }
+
+  /* .profile-pic {
+    height: 240px;
+  } */
+
+  .loading-balls {
+    height: 180px;
+  }
+}
+
+@media only screen and (min-width: 1100px) {
+  .text-size {
+    font-size: 1.8rem;
+  }
+  
+  .text-size-larger {
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (min-height: 930px) {
+  .nav-icons {
+    font-size: 4rem;
+  }
+  .small-title-size {
+    font-size: 3rem;
+  }
+}
+
+@media only screen and (min-height: 1000px) {
+  .profile-pic {
+    height: 300px;
+  }
+  .title-size {
+    font-size: 5rem;
+  }
+  .slogan-size {
+    font-size: 1.4rem;
+  }
+  .small-title-size {
+    font-size: 4rem;
+  }
 }

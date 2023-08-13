@@ -6,13 +6,13 @@ const ChatUser = memo(function ChatUser ({user, friendIndex, updateToggleUtility
     const totalUnread = user.chat.filter(message => message.author != JSON.parse(localStorage.getItem('staticUserInfo'))._id).filter(message => message.status === "Sent").length;
     return (
         <div className="chat-user-wrapper" onClick={updateToggleUtilityAction()}>
-                <div className="image-name-wrapper">
+                <div className="image-name-wrapper text-size">
                     <div className="profile-search-img-container">
                     <img src={user.profileUrl || defaultProfile} alt="" className="pic-blurb" />
                     </div>
-                    @<span className="user-color">{user.username}</span>
+                    @<span className="user-color text-size">{user.username}</span>
                 </div>
-                <div className={`notif-block${totalUnread === 0 ? '' : ' surprise'}`}>
+                <div className={`notif-block text-size${totalUnread === 0 ? '' : ' surprise'}`}>
                     {totalUnread === 0 ? 'Nothing new...' : `(${totalUnread}) unread message${totalUnread === 1 ? '' : 's'}!`}
                 </div>
         </div>

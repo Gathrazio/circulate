@@ -27,15 +27,15 @@ export default function FriendListPiece ({friend, updateToggleUtility, userFrien
 
     return (
         <div className="searched-user-wrapper">
-            <div className="searched-user-text">
+            <div className="searched-user-text text-size">
                 <div className="profile-search-img-container">
                     <img src={friend.profileUrl || defaultProfile} alt="" className="pic-blurb" />
                 </div>
-                @<span className="user-color">{friend.username}</span>
+                @<span className="user-color text-size">{friend.username}</span>
             </div>
-            <div className="searched-user-button-block">
-                <button className="view-profile-button" onClick={updateToggleUtilityAction()}>View Profile</button>
-                <button className="send-request-button" onClick={handleRemoval}>Remove</button>
+            <div className="searched-user-button-block text-size">
+                <button className="view-profile-button text-size" onClick={updateToggleUtilityAction()}>View Profile</button>
+                <button className="send-request-button text-size" onClick={handleRemoval}>Remove</button>
             </div>
         </div>
     )

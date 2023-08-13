@@ -24,29 +24,35 @@ export default function ProfileMain ({
 
     return (
         <>
-            <div className="view-reqs" onClick={toggleAction()}>
+            <div className="view-reqs text-size-larger" onClick={toggleAction()}>
                 View Active Friend Requests
             </div>
             <div className="profile-block">
-                <div className="username-block">
-                    @<span className="user-color larger">{JSON.parse(localStorage.getItem('staticUserInfo')).username}</span>
+                <div className="username-button-block">
+                    <div className="username-block">
+                    @<span className="user-color text-size larger">{JSON.parse(localStorage.getItem('staticUserInfo')).username}</span>
+                    </div>
+                    <button className="profile-change-button text-size" onClick={editProfileToggleAction()}>
+                        {editProfileToggle ? 'Update profile picture' : 'Edit profile picture'}
+                    </button>
                 </div>
+                
                 {editProfileToggle ?
-                <input type="text" className="profile-input" value={profileUrl || ''} onChange={profileUrlChange}/>
+                <input type="text" className="profile-input text-size" value={profileUrl || ''} onChange={profileUrlChange}/>
                 :
                 <img className="profile-pic" src={profileDesignation()} alt="" />
                 }
                 
-                <button className="profile-change-button" onClick={editProfileToggleAction()}>{editProfileToggle ? 'Update profile picture' : 'Edit profile picture'}</button>
+                
             </div>
             <div className="bio-block">
                 { editBioToggle ? 
-                <textarea type="text" onChange={bioChange} value={bioBody} className="bio-text bio-input"/>
+                <textarea type="text" onChange={bioChange} value={bioBody} className="bio-text text-size bio-input"/>
                 :
-                <div className={bioBody === null ? 'bio-text loading-phase' : 'bio-text'}>{bioDesignation()}</div>
+                <div className={bioBody === null ? 'bio-text text-size loading-phase' : 'bio-text text-size'}>{bioDesignation()}</div>
                 }
             </div>
-            <div className="edit-bio" onClick={editBioToggleAction()}>
+            <div className="edit-bio text-size" onClick={editBioToggleAction()}>
                     {editBioToggle ? 'Save updates' : 'Edit bio'}
             </div>
         </> 

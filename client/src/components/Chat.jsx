@@ -61,18 +61,18 @@ export default function Chat ({updateToggleUtility, userInfo, updateWithNewMessa
     return (
         <div className="chat-wrapper">
             <div className="my-friends-bar chat-chat">
-                <div className="show-hide-friends chat-chat" onClick={updateToggleUtilityAction()}>
+                <div className="show-hide-friends text-size chat-chat" onClick={updateToggleUtilityAction()}>
                 <IconContext.Provider value={{
                         className: `nav-icons`
                     }}>
                         <AiOutlineRollback />
                 </IconContext.Provider>
                 </div>
-                <div className="my-friends-text chat-chat">
+                <div className="my-friends-text text-size-larger chat-chat">
                 <div className="profile-search-img-container">
                     <img src={userInfo.profileUrl || defaultProfile} alt="" className="pic-blurb" />
                 </div>
-                @<span className="user-color">{userInfo.username}</span>
+                @<span className="user-color text-size">{userInfo.username}</span>
                 </div>
             </div>
             <div className="chat-space">
@@ -81,12 +81,12 @@ export default function Chat ({updateToggleUtility, userInfo, updateWithNewMessa
             </div>
             <div className="chat-bar-outer">
                 <form className="chat-bar" onSubmit={handleSubmit}>
-                <textarea className="chat-textarea" placeholder="Say something..." onChange={updateText} value={invincibleText.current} required/>
-                <button className="send-chat-button">
+                <textarea className="chat-textarea text-size" placeholder="Say something..." onChange={updateText} value={invincibleText.current} required/>
+                <button className="send-chat-button text-size">
                     Send
                 </button>
             </form>
-                <button className="clear-chat-button" onClick={handleChatClear}>
+                <button className="clear-chat-button text-size" onClick={handleChatClear}>
                     Clear Chat
                 </button>
             </div>

@@ -33,7 +33,7 @@ export default function MyFriends ({updateToggleUtility}) {
             )
         } else if (friends.length === 0) {
             return (
-                <div className="loading-placeholder">
+                <div className="loading-placeholder-text text-size">
                     You have no friends yet. Try searching through the userbase!
                 </div>
             )
@@ -73,11 +73,11 @@ export default function MyFriends ({updateToggleUtility}) {
 
     return (
         <div className="my-friends-block">
-            <div className="my-friends-bar">
+            <div className="my-friends-bar text-size">
                 <div className="show-hide-friends" onClick={friendListAction()}>
                     {friendListToggle ? "Hide" : "Show"}
                 </div>
-                <div className="my-friends-text">
+                <div className="my-friends-text text-size-larger">
                     My Friends
                 </div>
             </div>
