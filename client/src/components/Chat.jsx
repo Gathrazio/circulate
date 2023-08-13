@@ -67,7 +67,7 @@ export default function Chat ({updateToggleUtility, userInfo, updateWithNewMessa
                 <div className="profile-search-img-container">
                     <img src={userInfo.profileUrl || defaultProfile} alt="" className="pic-blurb" />
                 </div>
-                @{userInfo.username}
+                @<span className="user-color">{userInfo.username}</span>
                 </div>
             </div>
             <div className="chat-space">

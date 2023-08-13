@@ -31,7 +31,7 @@ export default function FriendListPiece ({friend, updateToggleUtility, userFrien
                 <div className="profile-search-img-container">
                     <img src={friend.profileUrl || defaultProfile} alt="" className="pic-blurb" />
                 </div>
-                @{friend.username}
+                @<span className="user-color">{friend.username}</span>
             </div>
             <div className="searched-user-button-block">
                 <button className="view-profile-button" onClick={updateToggleUtilityAction()}>View Profile</button>

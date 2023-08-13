@@ -29,7 +29,7 @@ export default function ProfileMain ({
             </div>
             <div className="profile-block">
                 <div className="username-block">
-                    @<span className="user-color">{JSON.parse(localStorage.getItem('staticUserInfo')).username}</span>
+                    @<span className="user-color larger">{JSON.parse(localStorage.getItem('staticUserInfo')).username}</span>
                 </div>
                 {editProfileToggle ?
                 <input type="text" className="profile-input" value={profileUrl || ''} onChange={profileUrlChange}/>

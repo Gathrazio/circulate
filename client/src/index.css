@@ -21,6 +21,11 @@
   --req-grey: rgb(198, 200, 201);
   --req-emerald: rgb(107, 164, 151);
   --user-color: rgb(222, 237, 21);
+  --my-chat-color: rgb(74, 233, 180);
+  --friend-chat-color: rgb(108, 205, 234);
+  --purple-grey: rgb(185, 177, 203);
+  --muted-tangerine: rgb(163, 129, 105);
+  --space-grey: rgb(147, 166, 194);
 }
 
 .titlebar-wrapper {
@@ -221,7 +226,7 @@
 
 .user-color {
   color: var(--user-color);
-  font-size: 1.8rem;
+  font-size: 1rem;
 }
 
 .username-block {
@@ -362,15 +367,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: var(--req-emerald);
 }
 
 .my-friends-text {
   width: 75%;
+  font-size: 1.3rem;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: aqua;
+  background-color: rgb(65, 142, 149);
 }
 
 .friend-button-right {
@@ -383,8 +390,9 @@
 
 .searchbar {
   height: 8vh;
-  background-color: bisque;
+  background-color: var(--purple-grey);
   border-bottom: 1px solid black;
+  border-top: 1px solid black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -404,6 +412,7 @@
 
 .search-input {
   border: none;
+  background-color: var(--entryway-offwhite);
   height: 80%;
   border-radius: 8px;
 }
@@ -433,30 +442,42 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: aqua;
+  background-color: var(--req-emerald);
 }
 
 .searched-user-wrapper {
   height: 12vh;
-  background-color: rgb(179, 108, 246);
-  border-bottom: 1px solid black;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
+  margin: 1vh;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: var(--muted-tangerine);
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.larger {
+  font-size: 1.3rem;
+}
+
+.searched-user-text {
+  width: 70% !important;
+}
+
+.searched-user-button-block {
+  width: 40%;
 }
 
 .searched-user-text, .searched-user-button-block {
   height: 100%;
 }
 
-.friend-list {
-  border-top: 1px solid black;
-}
-
 .pic-blurb {
   height: 70px;
+}
+
+.pending {
+  color: purple;
 }
 
 .spacer-bar {
@@ -485,7 +506,7 @@
 }
 
 .searched-user-button-block {
-  width: 50%;
+  width: 40%;
   display: flex;
   flex-direction: row;
 }
@@ -493,6 +514,7 @@
 .view-profile-button, .send-request-button {
   width: 50%;
   height: 100%;
+  background-color: var(--entryway-bluegrey);
   border: none;
 }
 
@@ -574,6 +596,7 @@
 .chat-message-body {
   background-color: white;
   padding: 8px;
+  white-space: pre-line;
   border-radius: 8px;
   margin: 5px;
   margin-bottom: 0px;
@@ -586,11 +609,11 @@
 }
 
 .right > .chat-message-body {
-  background-color: aquamarine;
+  background-color: var(--my-chat-color);
 }
 
 .left > .chat-message-body {
-  background-color: rgb(108, 205, 234);
+  background-color: var(--friend-chat-color);
 }
 
 .left {
@@ -611,7 +634,7 @@
   border-radius: 5px;
   overflow: hidden;
   margin: 1vh;
-  background-color: rgb(110, 153, 213);
+  background-color: var(--space-grey);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -632,4 +655,8 @@
   justify-content: center;
   align-items: center;
   width: 30%;
+}
+
+.surprise {
+  color: rgb(0, 255, 55);
 }

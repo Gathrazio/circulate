@@ -40,7 +40,7 @@ const UserProfile = memo(function UserProfile ({userInfo, updateToggleUtility}) 
             </div>
             <div className="profile-block friend-area">
                 <div className="username-block">
-                    @{userInfo.username}
+                    @<span className="user-color larger">{userInfo.username}</span>
                 </div>
                 <img className="profile-pic" src={profileDesignation(userInfo.profileUrl)} alt="" />
             </div>
