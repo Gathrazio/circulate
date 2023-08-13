@@ -15,7 +15,7 @@ userAxios.interceptors.request.use(config => {
 })
 
 
-export default function Chat ({updateToggleUtility, userInfo, updateWithNewMessage, updateMessageStatus}) {
+export default function Chat ({updateToggleUtility, userInfo, updateWithNewMessage, updateMessageStatus, fetchData}) {
     const updateToggleUtilityAction = () => () => updateToggleUtility(0);
 
     const invincibleText = useRef('');
@@ -33,6 +33,15 @@ export default function Chat ({updateToggleUtility, userInfo, updateWithNewMessa
         updateWithNewMessage(userInfo.chatId, userInfo._id, currentText)
     }
 
+    const handleChatClear = async () => {
+        try {
+            await userAxios.put(`/api/protected/chats/clearchat/${userInfo.chatId}`)
+            fetchData()
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     useEffect(() => {
         const stampMessages = async () => {
             const stampedMessagesRes = await userAxios.put(`/api/protected/chats/updatetoread/${userInfo.chatId}`);
@@ -40,10 +49,6 @@ export default function Chat ({updateToggleUtility, userInfo, updateWithNewMessa
         }
         stampMessages()
     }, [])
-
-    useEffect(() => {
-
-    }, [userInfo.chats])
 
     useEffect(() => {
         if (currentChatLength.current != userInfo.chat.length) {
@@ -74,12 +79,18 @@ export default function Chat ({updateToggleUtility, userInfo, updateWithNewMessa
             {userInfo.chat.map(message => <ChatMessage key={message._id} body={message.body} status={message.status} direction={message.author === JSON.parse(localStorage.getItem('staticUserInfo'))._id ? "right" : "left"}/>)}
             <ScrollToBottom />
             </div>
-            <form className="chat-bar" onSubmit={handleSubmit}>
+            <div className="chat-bar-outer">
+                <form className="chat-bar" onSubmit={handleSubmit}>
                 <textarea className="chat-textarea" placeholder="Say something..." onChange={updateText} value={invincibleText.current} required/>
                 <button className="send-chat-button">
                     Send
                 </button>
             </form>
+                <button className="clear-chat-button" onClick={handleChatClear}>
+                    Clear Chat
+                </button>
+            </div>
+            
         </div>
     )
 }

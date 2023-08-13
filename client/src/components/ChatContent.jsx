@@ -126,7 +126,7 @@ export default function ChatContent () {
                 </>
             )
         } else if (displayToggleUtility[0] === 1) {
-            return <Chat key={friends[displayToggleUtility[1]]._id} updateToggleUtility={updateToggleUtility} userInfo={friends[displayToggleUtility[1]]} updateWithNewMessage={updateWithNewMessage} updateMessageStatus={updateMessageStatus} />
+            return <Chat key={friends[displayToggleUtility[1]]._id} updateToggleUtility={updateToggleUtility} userInfo={friends[displayToggleUtility[1]]} updateWithNewMessage={updateWithNewMessage} updateMessageStatus={updateMessageStatus} fetchData={fetchData}/>
         }
     }
 

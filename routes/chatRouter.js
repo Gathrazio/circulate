@@ -183,4 +183,13 @@ chatRouter.route('/deletemessage/:chatID/:messageID') // deletes a specific mess
         })
 })
 
+chatRouter.route('/clearchat/:chatID')
+    .put((req, res, next) => {
+        Chat.findOneAndUpdate(
+            { _id: req.params.chatID },
+            { messages: [] },
+            { new: true })
+            .then(updatedChat => res.status(201).send("Chat cleared."))
+    })
+
 module.exports = chatRouter;

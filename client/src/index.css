@@ -513,6 +513,7 @@
 
 .view-profile-button, .send-request-button {
   width: 50%;
+  padding: 5px;
   height: 100%;
   background-color: var(--entryway-bluegrey);
   border: none;
@@ -567,20 +568,40 @@
   overflow-y: scroll;
 }
 
+.chat-bar {
+  width: 85%;
+}
+
 .chat-bar, .chat-textarea {
   height: 12vh;
   display: flex;
+  flex-direction: row;
+}
+
+.chat-bar-outer {
+  height: 12vh;
+  display: flex;
+  flex-direction: row;
 }
 
 .chat-textarea {
+  background-color: var(--entryway-offwhite);
   height: 12vh;
-  width: 75%;
+  width: 70.59%;
   border: none;
   padding: 5px;
 }
 
 .send-chat-button {
-  width: 25%;
+  width: 29.41%;
+  background-color: var(--entryway-bluegrey);
+  height: 12vh;
+  border: none;
+}
+
+.clear-chat-button {
+  width: 15%;
+  background-color: rgb(183, 149, 149);
   height: 12vh;
   border: none;
 }
