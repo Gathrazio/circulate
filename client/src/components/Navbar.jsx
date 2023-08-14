@@ -4,7 +4,7 @@ import { useState } from 'react'
 import {BiLogOut} from 'react-icons/bi'
 
 
-export default function Navbar ({updateToggle, updateToken}) {
+export default function Navbar ({updateToggle, updateToken, totalUnread}) {
 
     const [highlightToggle, setHighlightToggle] = useState([true, false, false]);
 
@@ -47,6 +47,7 @@ export default function Navbar ({updateToggle, updateToken}) {
             </div>
             <div className="chat-select" onClick={action(1)}>
                 <div className="select-text category-select">
+                    {totalUnread != 0 ? <div className="surprise text-size">({totalUnread})</div> : ''}
                     <IconContext.Provider value={{
                         className: `nav-icons${highlightToggle[1] ? ' highlighted' : ''}`
                     }}>
