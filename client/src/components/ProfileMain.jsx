@@ -38,7 +38,7 @@ export default function ProfileMain ({
                 </div>
                 
                 {editProfileToggle ?
-                <input type="text" className="profile-input text-size" value={profileUrl || ''} onChange={profileUrlChange}/>
+                <input type="text" className="profile-input text-size" value={profileUrl || ''} onChange={profileUrlChange} placeholder="Image URL"/>
                 :
                 <img className="profile-pic" src={profileDesignation()} alt="" />
                 }
