@@ -82,6 +82,7 @@ export default function Chat ({updateToggleUtility, userInfo, updateWithNewMessa
 
     useEffect(() => {
         const stampMessages = async () => {
+            setChat(prev => prev.map(message => ({...message, status: "Read"})))
             const stampedMessagesRes = await userAxios.put(`/api/protected/chats/updatetoread/${userInfo.chatId}`);
             updateMessageStatus(userInfo._id, stampedMessagesRes.data)
         }
