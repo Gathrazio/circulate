@@ -18,25 +18,35 @@ userAxios.interceptors.request.use(config => {
 export default function Chat ({updateToggleUtility, userInfo, updateWithNewMessage, updateMessageStatus, fetchData}) {
     const updateToggleUtilityAction = () => () => updateToggleUtility(0);
 
+    console.log('userInfo.chat', userInfo.chat)
+
     const invincibleText = useRef('');
     const currentChatLength = useRef(userInfo.chat.length);
-    const [currentText, setCurrentText] = useState(invincibleText.current);
+    const [textHelper, setTextHelper] = useState('');
+    const [chatClearToggle, setChatClearToggle] = useState(true);
 
     const updateText = (e) => {
         const {value} = e.target;
+        setTextHelper(value)
         invincibleText.current = value;
-        setCurrentText(value)
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        updateWithNewMessage(userInfo.chatId, userInfo._id, currentText)
+        setTextHelper('')
+        await updateWithNewMessage(userInfo.chatId, userInfo._id, invincibleText.current)
+        currentChatLength.current = userInfo.chat.length;
+        invincibleText.current = '';
     }
+
+    console.log('textHelper', textHelper)
 
     const handleChatClear = async () => {
         try {
+            setChatClearToggle(false)
             await userAxios.put(`/api/protected/chats/clearchat/${userInfo.chatId}`)
-            fetchData()
+            await fetchData()
+            setChatClearToggle(true)
         } catch (err) {
             console.log(err)
         }
@@ -49,14 +59,6 @@ export default function Chat ({updateToggleUtility, userInfo, updateWithNewMessa
         }
         stampMessages()
     }, [])
-
-    useEffect(() => {
-        if (currentChatLength.current != userInfo.chat.length) {
-            currentChatLength.current = userInfo.chat.length;
-            invincibleText.current = '';
-            setCurrentText('')
-        }
-    }, [userInfo])
 
     return (
         <div className="chat-wrapper">
@@ -81,14 +83,20 @@ export default function Chat ({updateToggleUtility, userInfo, updateWithNewMessa
             </div>
             <div className="chat-bar-outer">
                 <form className="chat-bar" onSubmit={handleSubmit}>
-                <textarea className="chat-textarea text-size" placeholder="Say something..." onChange={updateText} value={invincibleText.current} required/>
-                <button className="send-chat-button text-size">
-                    Send
-                </button>
-            </form>
-                <button className="clear-chat-button text-size" onClick={handleChatClear}>
-                    Clear Chat
-                </button>
+                    <textarea className="chat-textarea text-size" placeholder="Say something..." onChange={updateText} value={invincibleText.current} required/>
+                    <div className={`send-chat-button-wrapper${textHelper ? '' : ' disabled-wrapper'}`}>
+                        <button className={`send-chat-button text-size${textHelper ? '' : ' disabled'}`}>
+                            Send
+                        </button>
+                    </div>
+                    
+                </form>
+                <div className={`clear-chat-button-wrapper${chatClearToggle ? '' : ' disabled-wrapper'}`}>
+                    <button className={`clear-chat-button text-size${chatClearToggle ? '' : ' disabled'}`} onClick={handleChatClear}>
+                        Clear Chat
+                    </button>
+                </div>
+                
             </div>
             
         </div>

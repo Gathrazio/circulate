@@ -33,6 +33,39 @@
   --bio-blue: rgb(54, 100, 126);
 }
 
+/* hover effects */
+
+.entry-button:hover, .member:hover, .profile-change-button:hover, .req-button-half:hover, .req-button:hover, .send-chat-button:hover, .view-profile-button:hover, .send-request-button:hover {
+  background-color: var(--dark-bluegrey);
+  transition: 0.1s;
+}
+
+.logout:hover * {
+  color: var(--exit-deep-orange);
+  transition: 0.1s;
+}
+
+.profile-select:hover *, .chat-select:hover *, .friend-select:hover * {
+  color: rgb(133, 178, 207);
+}
+
+.profile-select:hover * .highlighted {
+  color: var(--entryway-offwhite);
+}
+
+.edit-bio:hover, .chat-user-wrapper:hover {
+  background-color: var(--bio-blue);
+  transition: 0.1s;
+}
+
+.show-hide-friends:hover {
+  background-color: rgb(49, 114, 99);
+}
+
+.clear-chat-button:hover {
+  background-color: var(--clear-chat-bright-red);
+}
+
 .titlebar-wrapper {
   height: 20vh;
   display: flex;
@@ -621,8 +654,15 @@
   padding: 5px;
 }
 
-.send-chat-button {
+.send-chat-button-wrapper {
   width: 29.41%;
+  background-color: var(--entryway-bluegrey);
+  height: 12vh;
+  border: none;
+}
+
+.send-chat-button {
+  width: 100%;
   padding: 5px;
   background-color: var(--entryway-bluegrey);
   height: 12vh;
@@ -630,10 +670,17 @@
 }
 
 .clear-chat-button {
-  width: 15%;
+  width: 100%;
   background-color: var(--clear-chat-red);
   height: 12vh;
   padding: 5px;
+  border: none;
+}
+
+.clear-chat-button-wrapper {
+  width: 15%;
+  background-color: var(--clear-chat-red);
+  height: 12vh;
   border: none;
 }
 
@@ -710,6 +757,18 @@
   width: 30%;
 }
 
+.disabled {
+  pointer-events: none;
+}
+
+.disabled-wrapper {
+  cursor: not-allowed;
+}
+
+.disabled:hover {
+  cursor:not-allowed;
+}
+
 .surprise {
   color: rgb(88, 255, 238);
 }
@@ -732,6 +791,7 @@
   .profile-pic {
     height: 190px;
   }
+
   .loading-balls {
     height: 130px;
   }
@@ -758,9 +818,11 @@
     .profile-block {
       flex-direction: row;
     }
+
     .profile-pic {
       height: 200px;
     }
+
     .username-block-margin {
       margin-right: 20px;
     }
@@ -792,47 +854,19 @@
   .title-size {
     font-size: 3.5rem;
   }
-
-  .entry-button:hover, .member:hover, .profile-change-button:hover, .req-button-half:hover, .req-button:hover, .send-chat-button:hover, .view-profile-button:hover, .send-request-button:hover {
-    background-color: var(--dark-bluegrey);
-    transition: 0.1s;
-  }
-
-  .logout:hover * {
-    color: var(--exit-deep-orange);
-    transition: 0.1s;
-  }
-
-  .profile-select:hover *, .chat-select:hover *, .friend-select:hover * {
-    color: rgb(133, 178, 207);
-  }
-
-  .profile-select:hover * .highlighted {
-    color: var(--entryway-offwhite);
-  }
-
-  .edit-bio:hover, .chat-user-wrapper:hover {
-    background-color: var(--bio-blue);
-    transition: 0.1s;
-  }
-
-  .show-hide-friends:hover {
-    background-color: rgb(49, 114, 99);
-  }
-
-  .clear-chat-button:hover {
-    background-color: var(--clear-chat-bright-red);
-  }
   
   .slogan-size {
     font-size: 1.1rem;
   }
+
   .small-title-size {
     font-size: 2rem;
   }
+
   .entry-form {
     width: 400px;
   }
+
   .text-size {
     font-size: 1.5rem;
   }
@@ -873,12 +907,15 @@
   .profile-pic {
     height: 300px;
   }
+
   .title-size {
     font-size: 5rem;
   }
+
   .slogan-size {
     font-size: 1.4rem;
   }
+
   .small-title-size {
     font-size: 4rem;
   }
