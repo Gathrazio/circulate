@@ -78,8 +78,6 @@ export default function Chat ({updateToggleUtility, userInfo, updateWithNewMessa
         }
     }
 
-    console.log('scrolLSignal', scrollSignal)
-
     useEffect(() => {
         const stampMessages = async () => {
             setChat(prev => prev.map(message => ({...message, status: "Read"})))
