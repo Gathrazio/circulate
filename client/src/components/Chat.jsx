@@ -85,7 +85,10 @@ export default function Chat ({updateToggleUtility, userInfo, updateWithNewMessa
             const stampedMessagesRes = await userAxios.put(`/api/protected/chats/updatetoread/${userInfo.chatId}`);
             updateMessageStatus(userInfo._id, stampedMessagesRes.data)
         }
-        stampMessages()
+        const timeoutId = setTimeout(stampMessages, 2000);
+        return () => {
+            clearTimeout(timeoutId)
+        }
     }, [])
 
     return (
