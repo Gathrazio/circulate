@@ -18,18 +18,42 @@ userAxios.interceptors.request.use(config => {
 export default function Chat ({updateToggleUtility, userInfo, updateWithNewMessage, updateMessageStatus, fetchData}) {
     const updateToggleUtilityAction = () => () => updateToggleUtility(0);
 
-    console.log('userInfo.chat', userInfo.chat)
 
+    const [chat, setChat] = useState(userInfo.chat)
     const invincibleText = useRef('');
+    const [initialRender, setInitialRender] = useState(true);
     const currentChatLength = useRef(userInfo.chat.length);
     const [textHelper, setTextHelper] = useState('');
     const [chatClearToggle, setChatClearToggle] = useState(true);
+    const [scrollSignal, setScrollSignal] = useState(true)
+
+    const updateInititalRenderFalse = () => {
+        setInitialRender(false)
+    }
+
+    useEffect(() => {
+        setChat(userInfo.chat)
+    }, [userInfo.chat.length])
 
     const updateText = (e) => {
         const {value} = e.target;
         setTextHelper(value)
         invincibleText.current = value;
     }
+
+    useEffect(() => {
+        setScrollSignal(true)
+        const handleChatLengthChange = async () => {
+            if (userInfo.chat[userInfo.chat.length - 1].author === userInfo._id) {
+                setChat(prev => prev.toSpliced(prev.length - 1, 1, {...prev[prev.length - 1], status: "Read"}))
+                await userAxios.put(`/api/protected/chats/updatemessagetoread/${userInfo.chatId}`)
+            }
+        }
+        const timeoutId = setTimeout(handleChatLengthChange, 2000)
+        return () => {
+            clearTimeout(timeoutId)
+        }
+    }, [userInfo.chat.length])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -39,7 +63,9 @@ export default function Chat ({updateToggleUtility, userInfo, updateWithNewMessa
         invincibleText.current = '';
     }
 
-    console.log('textHelper', textHelper)
+    function updateScrollSignalFalse () {
+        setScrollSignal(false)
+    }
 
     const handleChatClear = async () => {
         try {
@@ -51,6 +77,8 @@ export default function Chat ({updateToggleUtility, userInfo, updateWithNewMessa
             console.log(err)
         }
     }
+
+    console.log('scrolLSignal', scrollSignal)
 
     useEffect(() => {
         const stampMessages = async () => {
@@ -78,8 +106,8 @@ export default function Chat ({updateToggleUtility, userInfo, updateWithNewMessa
                 </div>
             </div>
             <div className="chat-space">
-            {userInfo.chat.map(message => <ChatMessage key={message._id} body={message.body} status={message.status} direction={message.author === JSON.parse(localStorage.getItem('staticUserInfo'))._id ? "right" : "left"}/>)}
-            <ScrollToBottom />
+            {chat && chat.map(message => <ChatMessage key={message._id} body={message.body} status={message.status} direction={message.author === JSON.parse(localStorage.getItem('staticUserInfo'))._id ? "right" : "left"}/>)}
+            {scrollSignal && <ScrollToBottom  initialRender={initialRender} updateInititalRenderFalse={updateInititalRenderFalse} updateScrollSignalFalse={updateScrollSignalFalse}/>}
             </div>
             <div className="chat-bar-outer">
                 <form className="chat-bar" onSubmit={handleSubmit}>
@@ -96,9 +124,7 @@ export default function Chat ({updateToggleUtility, userInfo, updateWithNewMessa
                         Clear Chat
                     </button>
                 </div>
-                
             </div>
-            
         </div>
     )
 }

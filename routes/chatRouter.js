@@ -152,7 +152,8 @@ chatRouter.route('/updatemessagetoread/:chatID')
             Chat.findOne({ _id: req.params.chatID })
                 .then(chat => {
                     const message = chat.messages[chat.messages.length - 1];
-                    const updatedMessages = chat.messages.toSpliced(messageIndex, 1, {...message._doc, status: "Read"})
+                    console.log('chat.messages', chat.messages)
+                    const updatedMessages = chat.messages.toSpliced(chat.messages.length - 1, 1, {...message._doc, status: "Read"})
                     Chat.findOneAndUpdate(
                         { _id: req.params.chatID },
                         { messages: updatedMessages },

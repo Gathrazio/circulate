@@ -62,8 +62,10 @@ export default function Navpage ({updateToken}) {
             } catch (err) {
                 console.log(err)
             }
+            return;
         }
         updateAPI()
+        return;
     }
 
     const [friends, setFriends] = useState(null);
@@ -92,13 +94,13 @@ export default function Navpage ({updateToken}) {
         } catch (err) {
             console.log(err)
         }
+        return;
     }
 
     let totalUnread = 0;
 
     if (friends) {
         totalUnread = friends.reduce((accumulator, friend) => accumulator + friend.chat.filter(message => message.author != JSON.parse(localStorage.getItem('staticUserInfo'))._id).filter(message => message.status === "Sent").length, 0);
-        console.log('totalUnread', totalUnread)
     }
     
 
